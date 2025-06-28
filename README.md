@@ -1,24 +1,154 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Topiconic
 
-## Getting Started
+Professional website template built with Next.js, TypeScript, Tailwind CSS, and modern web technologies.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Next.js 15** with App Router
+- **TypeScript** with strict mode for type safety
+- **Tailwind CSS v4** with custom design system
+- **shadcn/ui** component library
+- **Framer Motion** for smooth animations
+- **Dark/Light theme** with system preference support
+- **Responsive design** for all devices
+- **Professional structure** ready for development
+
+## 📁 Project Structure
+
+```
+topiconic/
+├── src/
+│   ├── app/                    # Next.js App Router pages
+│   │   ├── components/         # Component showcase page
+│   │   ├── globals.css         # Global styles
+│   │   ├── layout.tsx          # Root layout
+│   │   └── page.tsx            # Homepage
+│   ├── components/             # Reusable components
+│   │   ├── animations/         # Animation components
+│   │   ├── layout/             # Header, Footer
+│   │   ├── theme/              # Theme system
+│   │   └── ui/                 # shadcn/ui components
+│   ├── lib/                    # Utility functions
+│   └── types/                  # TypeScript type definitions
+├── public/                     # Static assets
+└── components.json             # shadcn/ui configuration
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠 Available Components
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### UI Components (shadcn/ui)
+- **Buttons** - Various styles and sizes
+- **Cards** - Flexible content containers
+- **Forms** - Input, Label, Switch components
+- **Navigation** - Dropdown menus
+- **Feedback** - Alerts, Badges
+- **Layout** - Avatar, Separator
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Custom Components
+- **Header** - Responsive navigation with theme toggle
+- **Footer** - Brand info and links
+- **Animations** - Framer Motion powered animations
+- **Theme System** - Dark/light mode with custom colors
+
+### Animation Library
+- `FadeInUp` - Fade in from bottom
+- `FadeInDown` - Fade in from top
+- `ScaleIn` - Scale animation
+- `StaggerContainer` / `StaggerItem` - Staggered animations
+- `AnimatedButton` - Interactive button with hover effects
+
+## 🎨 Design System
+
+### Color Palette
+- **Brand Primary:** `#6366f1` (Indigo)
+- **Brand Secondary:** `#8b5cf6` (Purple)
+- **Brand Accent:** `#06b6d4` (Cyan)
+- **Success:** `#22c55e` (Green)
+- **Warning:** `#f59e0b` (Amber)
+- **Destructive:** `#ef4444` (Red)
+
+### Typography
+- **Font:** Geist Sans (Primary) / Geist Mono (Code)
+- **Scale:** xs, sm, base, lg, xl, 2xl, 3xl, 4xl, 5xl, 6xl, 7xl
+
+## 🚀 Getting Started
+
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+2. **Start development server:**
+   ```bash
+   npm run dev
+   ```
+
+3. **Open browser:**
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+## 📝 Development
+
+### Adding New Components
+
+1. Use shadcn/ui CLI to add components:
+   ```bash
+   npx shadcn@latest add [component-name]
+   ```
+
+2. Custom components go in `src/components/`
+
+3. Follow the existing naming conventions and structure
+
+### Adding New Pages
+
+1. Create page in `src/app/` directory
+2. Update navigation in `src/components/layout/header.tsx`
+3. Add to footer links if needed
+
+### Styling
+
+- Use Tailwind CSS classes
+- Custom colors available via CSS variables
+- Theme-aware design with dark/light mode support
+
+## 🔧 Tech Stack
+
+- **Framework:** Next.js 15
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS v4
+- **Components:** shadcn/ui + Radix UI
+- **Animations:** Framer Motion
+- **Icons:** Lucide React
+- **Fonts:** Geist (Variable)
+
+## 📄 Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+
+## 🎯 Ready for Production
+
+This template is production-ready with:
+- ✅ SEO optimized
+- ✅ Performance optimized
+- ✅ Accessibility compliant
+- ✅ Type-safe
+- ✅ Mobile responsive
+- ✅ Clean code structure
+
+## 📦 What's Included
+
+All components and utilities are preserved and ready to use:
+- Complete UI component library
+- Animation system
+- Theme management
+- Layout components
+- Type definitions
+- Build configuration
+
+Start building your next project with this solid foundation!
 
 ## Learn More
 
