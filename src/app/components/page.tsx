@@ -9,15 +9,6 @@ import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { FadeInUp } from "@/components/animations";
 import { Palette, Code, Layout, Sparkles } from "lucide-react";
 
@@ -237,46 +228,6 @@ export default function ComponentsPage() {
               <Button className="w-full">Submit</Button>
             </CardFooter>
           </Card>
-        </section>
-
-        {/* Dropdown Menu Section */}
-        <section className="space-y-6">
-          <div>
-            <h2 className="text-2xl font-semibold mb-2">Dropdown Menu</h2>
-            <p className="text-muted-foreground">Accessible dropdown menus with keyboard navigation</p>
-          </div>
-          <div className="flex gap-4">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline">Actions Menu</Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Edit</DropdownMenuItem>
-                <DropdownMenuItem>Copy</DropdownMenuItem>
-                <DropdownMenuItem>Move</DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem className="text-destructive">Delete</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-        </section>
-
-        {/* Alerts Section */}
-        <section className="space-y-6">
-          <div>
-            <h2 className="text-2xl font-semibold mb-2">Alerts</h2>
-            <p className="text-muted-foreground">Important messages and notifications</p>
-          </div>
-          <div className="space-y-4 max-w-2xl">
-            <Alert>
-              <AlertTitle>Information</AlertTitle>
-              <AlertDescription>
-                This is an informational alert message.
-              </AlertDescription>
-            </Alert>
-          </div>
         </section>
 
         {/* Separator */}
