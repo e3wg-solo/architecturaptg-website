@@ -9,6 +9,7 @@ interface AnimatedDivProps extends HTMLMotionProps<"div"> {
 }
 
 export function FadeInUp({ children, delay = 0, ...props }: AnimatedDivProps) {
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -27,6 +28,12 @@ export function FadeInUp({ children, delay = 0, ...props }: AnimatedDivProps) {
 }
 
 export function FadeInDown({ children, delay = 0, ...props }: AnimatedDivProps) {
+  const isClient = useIsClient();
+
+  if (!isClient) {
+    return <div {...props}>{children}</div>;
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}
@@ -45,6 +52,12 @@ export function FadeInDown({ children, delay = 0, ...props }: AnimatedDivProps) 
 }
 
 export function FadeInLeft({ children, delay = 0, ...props }: AnimatedDivProps) {
+  const isClient = useIsClient();
+
+  if (!isClient) {
+    return <div {...props}>{children}</div>;
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, x: -20 }}
@@ -63,6 +76,12 @@ export function FadeInLeft({ children, delay = 0, ...props }: AnimatedDivProps) 
 }
 
 export function FadeInRight({ children, delay = 0, ...props }: AnimatedDivProps) {
+  const isClient = useIsClient();
+
+  if (!isClient) {
+    return <div {...props}>{children}</div>;
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -81,6 +100,12 @@ export function FadeInRight({ children, delay = 0, ...props }: AnimatedDivProps)
 }
 
 export function FadeIn({ children, delay = 0, ...props }: AnimatedDivProps) {
+  const isClient = useIsClient();
+
+  if (!isClient) {
+    return <div {...props}>{children}</div>;
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -99,6 +124,12 @@ export function FadeIn({ children, delay = 0, ...props }: AnimatedDivProps) {
 }
 
 export function ScaleIn({ children, delay = 0, ...props }: AnimatedDivProps) {
+  const isClient = useIsClient();
+
+  if (!isClient) {
+    return <div {...props}>{children}</div>;
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
@@ -118,6 +149,12 @@ export function ScaleIn({ children, delay = 0, ...props }: AnimatedDivProps) {
 
 // Stagger container for animating lists
 export function StaggerContainer({ children, ...props }: AnimatedDivProps) {
+  const isClient = useIsClient();
+
+  if (!isClient) {
+    return <div {...props}>{children}</div>;
+  }
+
   return (
     <motion.div
       initial="hidden"
@@ -146,6 +183,12 @@ export function StaggerContainer({ children, ...props }: AnimatedDivProps) {
 
 // Stagger item to be used inside StaggerContainer
 export function StaggerItem({ children, ...props }: AnimatedDivProps) {
+  const isClient = useIsClient();
+
+  if (!isClient) {
+    return <div {...props}>{children}</div>;
+  }
+
   return (
     <motion.div
       variants={{

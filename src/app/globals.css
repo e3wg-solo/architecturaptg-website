@@ -3,6 +3,70 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* SF Pro Display Font Face */
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('https://fonts.cdnfonts.com/s/92806/SF-Pro-Display-Regular.woff2') format('woff2'),
+       url('https://fonts.cdnfonts.com/s/92806/SF-Pro-Display-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('https://fonts.cdnfonts.com/s/92806/SF-Pro-Display-Medium.woff2') format('woff2'),
+       url('https://fonts.cdnfonts.com/s/92806/SF-Pro-Display-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('https://fonts.cdnfonts.com/s/92806/SF-Pro-Display-Semibold.woff2') format('woff2'),
+       url('https://fonts.cdnfonts.com/s/92806/SF-Pro-Display-Semibold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('https://fonts.cdnfonts.com/s/92806/SF-Pro-Display-Bold.woff2') format('woff2'),
+       url('https://fonts.cdnfonts.com/s/92806/SF-Pro-Display-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('https://fonts.cdnfonts.com/s/92806/SF-Pro-Display-Light.woff2') format('woff2'),
+       url('https://fonts.cdnfonts.com/s/92806/SF-Pro-Display-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('https://fonts.cdnfonts.com/s/92806/SF-Pro-Display-Heavy.woff2') format('woff2'),
+       url('https://fonts.cdnfonts.com/s/92806/SF-Pro-Display-Heavy.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('https://fonts.cdnfonts.com/s/92806/SF-Pro-Display-Black.woff2') format('woff2'),
+       url('https://fonts.cdnfonts.com/s/92806/SF-Pro-Display-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Custom CSS Variables for Theme */
 :root {
   /* Light theme colors */
@@ -93,7 +157,7 @@
   --color-brand-accent: var(--brand-accent);
 
   /* Typography */
-  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-sans: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
 
@@ -163,6 +227,59 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --animate-marquee: marquee var(--duration) infinite linear;
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+  @keyframes marquee {
+  from {
+    transform: translateX(0);
+    }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+  @keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+    }
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
+    }
+  }
+  --animate-border-beam: border-beam calc(var(--duration)*1s) infinite linear;
+
+  @keyframes border-beam {
+    100% {
+      offset-distance: 100%;
+    }
+  }
+
+  @keyframes shine-pulse {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    to {
+      background-position: 0% 0%;
+    }
+  }
+  @keyframes border-beam {
+  100% {
+    offset-distance: 100%;
+    }
+  }
+  @keyframes shine-pulse {
+  0% {
+    background-position: 0% 0%;
+    }
+  50% {
+    background-position: 100% 100%;
+    }
+  to {
+    background-position: 0% 0%;
+    }
+  }
 }
 
 /* Dark theme */
@@ -255,6 +372,84 @@
 
 body {
   font-family: var(--font-sans);
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "pnum" 1, "tnum" 0, "onum" 1, "lnum" 0, "dlig" 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure SF Pro Display is applied to all text elements */
+h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, textarea, select {
+  font-family: var(--font-sans);
+}
+
+/* Additional selectors for component libraries */
+.card, .carousel, .button, .badge, .accordion, .contact-buttons, .faq, .services-grid, .testimonial, .review {
+  font-family: var(--font-sans);
+}
+
+/* Force SF Pro Display on all shadcn/ui components */
+[class*="ui-"], [class*="button"], [class*="card"], [class*="carousel"], [class*="badge"], [class*="accordion"], [class*="input"], [class*="textarea"], [class*="select"], [class*="dropdown"], [class*="modal"], [class*="dialog"], [class*="popover"], [class*="tooltip"] {
+  font-family: var(--font-sans);
+}
+
+/* Ensure all React components use SF Pro Display */
+[class*="component"], [class*="Component"], [class*="layout"], [class*="Layout"], [class*="page"], [class*="Page"], [class*="section"], [class*="Section"] {
+  font-family: var(--font-sans);
+}
+
+/* Ensure all children inherit the font */
+* {
+  font-family: inherit;
+}
+
+/* SF Pro Display optimizations */
+.sf-pro-display-optimized {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "liga", "kern";
+}
+
+/* Apply optimizations to all text by default */
+html {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Dark theme font optimizations */
+.dark html, .dark body, [data-theme="dark"] {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-sans);
+}
+
+/* Mobile font optimizations */
+@media screen and (max-width: 768px) {
+  html, body {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+  }
+}
+
+/* Font loading optimization */
+.font-loading {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.font-loaded {
+  font-family: var(--font-sans);
+}
+
+/* Preload font display swap */
+@supports (font-display: swap) {
+  @font-face {
+    font-family: 'SF Pro Display Fallback';
+    src: local('SF Pro Display'), local('Helvetica Neue'), local('Helvetica'), local('Arial');
+    font-display: swap;
+  }
 }
 
 /* Custom utility classes */
@@ -293,6 +488,14 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Line clamp utilities */
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 
 /* Animations */
@@ -373,6 +576,33 @@ body {
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+/* Accordion animations */
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+.animate-accordion-down {
+  animation: accordion-down 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.animate-accordion-up {
+  animation: accordion-up 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -380,4 +610,24 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    line-height: 1.5;
+  }
+}
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Add offset for fixed header when scrolling to anchors */
+section[id] {
+  scroll-margin-top: 80px;
 }
