@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
+import Image from "next/image";
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -73,10 +74,13 @@ export function Header() {
           {/* Logo/Site Title */}
           <div className="flex items-center space-x-4">
             <Link href="/" className="flex items-center space-x-2">
-              <img
-                src="https://i.ibb.co/b59ZnSHN/topiconic-eng-gold-1.png"
+              <Image
+                src="https://i.ibb.co/y2pTSmN/topiconic-eng-gold-1.webp"
                 alt="Topiconic"
-                className="h-8 md:h-10 w-auto"
+                width={100}
+                height={100}
+                className="h-10 md:h-10 w-auto"
+                priority
               />
               <span className="hidden font-bold text-xl sm:inline-block">
                 

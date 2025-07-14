@@ -490,6 +490,17 @@ html {
   background-clip: text;
 }
 
+/* Radial gradient utilities */
+.bg-radial-gold {
+  background: radial-gradient(ellipse at 50% 100%, 
+    rgba(255, 215, 0, 0.3) 0%, 
+    rgba(255, 215, 0, 0.2) 20%, 
+    rgba(255, 215, 0, 0.1) 40%, 
+    rgba(255, 215, 0, 0.05) 60%, 
+    transparent 80%), 
+    #000000 !important;
+}
+
 /* Line clamp utilities */
 .line-clamp-3 {
   overflow: hidden;

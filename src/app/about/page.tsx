@@ -7,11 +7,13 @@ import { ArrowLeft, Users, Award, Heart, Star, X, ChevronLeft, ChevronRight } fr
 import Link from 'next/link';
 import { useState, useCallback, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import { EmblaCarouselType } from 'embla-carousel';
 
 const teamPhotos = [
   "https://i.ibb.co/d4pKzprx/ph6.webp",
@@ -30,11 +32,15 @@ const teamPhotos = [
 
 
 export default function AboutUsPage() {
-  const [emblaApi, setEmblaApi] = useState<any>(null);
+  const [emblaApi, setEmblaApi] = useState<EmblaCarouselType | null>(null);
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  const handleApiChange = useCallback((api: EmblaCarouselType | undefined) => {
+    setEmblaApi(api || null);
+  }, []);
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -125,13 +131,13 @@ export default function AboutUsPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-black">
       {/* Header */}
-      <section className="bg-gradient-to-br from-background via-background to-accent/10 pt-5">
-        <div className="container mx-auto px-4">
+      <section className="bg-black via-background to-accent/10 pt-5">
+        <div className="container mx-auto px-4 bg-black">
           <div className="max-w-4xl mx-auto">
             <FadeInUp>
-              <div className="flex items-center gap-4 mb-8">
+              <div className="flex items-center gap-4 mb-8 bg-black">
                 <Link href="/" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
                   <ArrowLeft className="h-5 w-5" />
                   Назад на главную
@@ -313,21 +319,22 @@ export default function AboutUsPage() {
                     containScroll: "trimSnaps",
                   }}
                   className="w-full"
-                  setApi={setEmblaApi}
+                  setApi={handleApiChange}
                 >
                   <CarouselContent>
                     {teamPhotos.map((photo, index) => (
                       <CarouselItem key={index} className="transform-gpu">
                         <div 
-                          className="aspect-[16/9] rounded-2xl overflow-hidden cursor-pointer"
+                          className="relative aspect-[16/9] rounded-2xl overflow-hidden cursor-pointer"
                           onClick={() => openModal(index)}
                         >
-                          <img
+                          <Image
                             src={photo}
                             alt={`Gallery ${index + 1}`}
-                            className="w-full h-full object-cover"
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             loading="lazy"
-                            decoding="async"
                           />
                         </div>
                       </CarouselItem>
@@ -408,12 +415,13 @@ export default function AboutUsPage() {
               className="relative w-full h-full flex items-center justify-center"
               onClick={(e) => e.stopPropagation()}
             >
-              <img
+              <Image
                 src={teamPhotos[selectedImage]}
                 alt={`Gallery ${selectedImage + 1}`}
+                width={1200}
+                height={800}
                 className="w-auto h-auto max-w-[90vw] max-h-[90vh] object-contain rounded-lg"
                 loading="lazy"
-                decoding="async"
               />
               
               {/* Image counter */}

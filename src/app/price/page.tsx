@@ -1,7 +1,7 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { FadeInUp } from "@/components/animations";
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -78,7 +78,7 @@ const samplePrices: { [key: string]: { name: string; price: string; duration?: s
   ],
 };
 
-export default function PricePage() {
+function PricePageContent() {
   const searchParams = useSearchParams();
   const serviceId = searchParams.get('service');
   const [openAccordion, setOpenAccordion] = useState<string>('');
@@ -99,10 +99,10 @@ export default function PricePage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-black">
       {/* Header */}
-      <section className="bg-gradient-to-br from-background via-background to-accent/10 pt-5">
-        <div className="container mx-auto px-4">
+      <section className="bg-black via-background to-accent/10 pt-5">
+        <div className="container mx-auto px-4 bg-black">
           <div className="max-w-4xl mx-auto">
             <FadeInUp>
               <div className="flex items-center gap-4 mb-8">
@@ -171,7 +171,7 @@ export default function PricePage() {
             
             {/* Contact Buttons */}
             <FadeInUp delay={0.4}>
-              <div className="mt-12 p-8 bg-muted/30 rounded-2xl">
+              <div className="mt-12 p-8 bg-card rounded-2xl">
                 <h3 className="text-xl font-bold mb-4 text-center">
                   Записаться на услугу
                 </h3>
@@ -202,4 +202,12 @@ export default function PricePage() {
       </section>
     </div>
   );
-} 
+}
+
+export default function PricePage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <PricePageContent />
+    </Suspense>
+  );
+}

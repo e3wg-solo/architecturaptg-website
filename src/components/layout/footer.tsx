@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Phone, MapPin } from "lucide-react";
+import Image from "next/image";
 
 export function Footer() {
   return (
@@ -9,12 +10,13 @@ export function Footer() {
           {/* Brand Section */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-              <img
-                src="https://i.ibb.co/b59ZnSHN/topiconic-eng-gold-1.png"
+              <Image
+                src="https://i.ibb.co/y2pTSmN/topiconic-eng-gold-1.webp"
                 alt="Topiconic"
+                width={100}
+                height={100}
                 className="h-8 w-auto"
               />
-              <span className="font-bold text-xl">TOPICONIC</span>
             </div>
             <p className="text-muted-foreground mb-6 max-w-md">
             Премиальный бьюти & спа салон рядом с вами. Создаём индивидуальные образы и заботимся о вашей красоте с 2020 года.

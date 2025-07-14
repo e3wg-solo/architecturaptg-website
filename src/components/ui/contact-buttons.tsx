@@ -13,9 +13,7 @@ export function ContactButtons() {
     window.open('https://wa.me/79937775559', '_blank');
   };
 
-  const handleEmailClick = () => {
-    window.open('mailto:contact@example.com', '_self');
-  };
+
 
   return (
     <div className="space-y-6">

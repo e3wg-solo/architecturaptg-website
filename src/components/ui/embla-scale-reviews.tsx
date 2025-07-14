@@ -5,6 +5,7 @@ import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import { Star, User, ArrowLeft, ArrowRight, ExternalLink, MessageSquarePlus, ChevronDown, ChevronUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
 
 interface Review {
   id: number;
@@ -109,12 +110,14 @@ function ReviewCard({ review, scale = 1 }: { review: Review; scale?: number }) {
       {/* Author Info */}
       <div className="flex items-start gap-3 mb-5">
         {/* Аватар */}
-        <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center overflow-hidden">
+        <div className="relative h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center overflow-hidden">
           {review.avatar ? (
-            <img
+            <Image
               src={review.avatar}
               alt={review.name}
-              className="h-full w-full object-cover"
+              width={48}
+              height={48}
+              className="object-cover"
             />
           ) : (
             <User className="h-6 w-6 text-primary" />

@@ -24,7 +24,7 @@ export function GooeyText({
   const [currentText, setCurrentText] = React.useState(texts[0] || "");
   const [isClient, setIsClient] = React.useState(false);
   const [maxWidth, setMaxWidth] = React.useState<string>('auto');
-  const filterId = React.useMemo(() => `gooey-filter-${Math.random().toString(36).substr(2, 9)}`, []);
+  const filterId = React.useId();
 
   // Устанавливаем клиентский флаг после гидратации
   React.useEffect(() => {
@@ -136,12 +136,11 @@ export function GooeyText({
       </svg>
 
       <div
-        className="relative inline-block min-h-[1.2em] text-center"
-        style={{ 
+        className="relative inline-block min-h-[1.2em] text-center min-w-[200px]"
+        style={isClient ? { 
           filter: `url(#${filterId})`,
-          width: maxWidth,
-          minWidth: '200px'
-        }}
+          width: maxWidth
+        } : {}}
       >
         <span
           ref={text1Ref}

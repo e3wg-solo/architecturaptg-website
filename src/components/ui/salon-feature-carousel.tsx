@@ -1,18 +1,16 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
 import { useCallback, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Autoplay from 'embla-carousel-autoplay';
-import Image from "next/image";
+import { EmblaCarouselType } from 'embla-carousel';
+import Image from 'next/image';
 
 function SalonFeatureCarousel() {
   const services = [
@@ -33,7 +31,11 @@ function SalonFeatureCarousel() {
     }
   ];
 
-  const [emblaApi, setEmblaApi] = useState<any>(null);
+  const [emblaApi, setEmblaApi] = useState<EmblaCarouselType | null>(null);
+
+  const handleApiChange = useCallback((api: EmblaCarouselType | undefined) => {
+    setEmblaApi(api || null);
+  }, []);
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -61,7 +63,7 @@ function SalonFeatureCarousel() {
           <div className="w-full max-w-full">
             <Carousel 
               className="w-full max-w-full"
-              setApi={setEmblaApi}
+              setApi={handleApiChange}
               opts={{
                 loop: true,
                 align: "center",
@@ -79,12 +81,15 @@ function SalonFeatureCarousel() {
               <CarouselContent className="-ml-2 md:-ml-4">
                 {services.map((service, index) => (
                   <CarouselItem key={index} className="pl-2 md:pl-4">
-                    <div className="flex rounded-3xl aspect-square bg-muted items-center justify-center border border-border/60 hover:border-primary/20 transition-colors mx-2 sm:mx-0 overflow-hidden">
+                    <div className="relative flex rounded-3xl aspect-square bg-muted items-center justify-center border border-border/60 hover:border-primary/20 transition-colors mx-2 sm:mx-0 overflow-hidden">
                       {service.image ? (
-                        <img
+                        <Image
                           src={service.image}
                           alt={`Работа ${index + 1}`}
-                          className="h-full w-full object-cover"
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          priority={index < 2}
                         />
                       ) : (
                         <div className="h-full w-full bg-muted flex items-center justify-center">

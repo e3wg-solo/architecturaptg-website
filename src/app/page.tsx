@@ -1,6 +1,6 @@
 "use client";
 
-import { FadeInUp } from "@/components/animations";
+import { FadeInUp, FadeInDown, FadeIn, ScrollFadeInUp } from "@/components/animations";
 import { AnimatedButton } from "@/components/animations/animated-button";
 import { EmblaScaleReviews } from "@/components/ui/embla-scale-reviews";
 import { FaqSectionWithCategories } from "@/components/ui/faq-with-categories";
@@ -13,66 +13,87 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-background via-background to-accent/10">
-        <div className="container mx-auto px-4 py-25 sm:py-32">
+      <section className="relative overflow-hidden bg-black">
+        <FadeIn delay={0.2}>
+          <div 
+            className="absolute -top-[330px] sm:-top-[700px] lg:-top-[910px] left-1/2 -translate-x-1/2 
+                       w-[900px] sm:w-[1400px] lg:w-[2100px] 
+                       h-[600px] sm:h-[1300px] lg:h-[1400px] 
+                       rounded-full pointer-events-none z-0" 
+            style={{
+              background: 'radial-gradient(circle, rgba(202, 142, 52, 0.7) 0%, transparent 60%)'
+            }}
+          />
+        </FadeIn>
+        
+        {/* Контент поверх */}
+        <div className="relative z-10 container mx-auto px-4 py-25 sm:py-32">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-brand-primary/10 text-brand-primary px-4 py-2 rounded-full text-sm font-medium mb-8">
-              Добро пожаловать в Topiconic
-            </div>
+            <FadeInDown delay={0.4}>
+              <div className="inline-flex items-center gap-2 bg-brand-primary/10 text-brand-primary px-4 py-2 rounded-full text-sm font-medium mb-8">
+                Добро пожаловать в Topiconic
+              </div>
+            </FadeInDown>
             
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
-            Ты заслуживаешь быть
-              <br />
-              <GooeyText
-                texts={["счастливой", "уверенной", "любимой", "безупречной", "вдохновлённой", "расслабленной"]}
-                morphTime={1.5}
-                cooldownTime={0.8}
-                textClassName="text-4xl sm:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent"
-              />
-            </h1>
+            <FadeInUp delay={0.6}>
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
+              Ты заслуживаешь быть
+                <br />
+                <GooeyText
+                  texts={["счастливой", "уверенной", "любимой", "безупречной", "вдохновлённой", "расслабленной"]}
+                  morphTime={1.5}
+                  cooldownTime={0.8}
+                  textClassName="text-4xl sm:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent"
+                />
+              </h1>
+            </FadeInUp>
             
-            <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
-            Уютное пространство, где вы можете расслабиться, довериться и стать лучшей версией себя.
-            </p>
+            <FadeInUp delay={0.8}>
+              <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
+              Уютное пространство, где вы можете расслабиться, довериться и стать лучшей версией себя.
+              </p>
+            </FadeInUp>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <AnimatedButton 
-                className="bg-brand-primary text-white hover:bg-brand-primary/90 text-lg px-8 py-4 h-auto rounded-xl font-medium transition-colors shadow-lg hover:shadow-xl"
-                onClick={() => window.open('https://wa.me/79937775559', '_blank')}
-              >
-                Записаться
-              </AnimatedButton>
-              <AnimatedButton 
-                variant="outline"
-                className="border-1 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-white text-lg px-8 py-4 h-auto rounded-xl font-medium transition-all shadow-md hover:shadow-lg"
-                onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                Посмотреть услуги
-              </AnimatedButton>
-            </div>
+            <FadeInUp delay={1.0}>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <AnimatedButton 
+                  className="bg-brand-primary text-white hover:bg-brand-primary/90 text-lg px-8 py-4 h-auto rounded-xl font-medium transition-colors shadow-lg hover:shadow-xl"
+                  onClick={() => window.open('https://wa.me/79937775559', '_blank')}
+                >
+                  Записаться
+                </AnimatedButton>
+                <AnimatedButton 
+                  variant="outline"
+                  className="border-1 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-white text-lg px-8 py-4 h-auto rounded-xl font-medium transition-all shadow-md hover:shadow-lg"
+                  onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
+                >
+                  Посмотреть услуги
+                </AnimatedButton>
+              </div>
+            </FadeInUp>
           </div>
         </div>
       </section>
 
 
       {/* Services Section */}
-      <section id="services" className="bg-background">
-        <FadeInUp>
+      <ScrollFadeInUp>
+        <section id="services" className="bg-black">
           <ServicesGrid />
-        </FadeInUp>
-      </section>
+        </section>
+      </ScrollFadeInUp>
 
       {/* Salon Services Carousel Section */}
-      <section className="py-0 bg-background">
-        <FadeInUp>
+      <ScrollFadeInUp delay={0.5}>
+        <section className="py-0 bg-black">
           <SalonFeatureCarousel />
-        </FadeInUp>
-      </section>
+        </section>
+      </ScrollFadeInUp>
 
       {/* Embla Scale Reviews Section */}
-      <section className="py-20 sm:py-32">
-        <div className="container mx-auto px-4">
-          <FadeInUp>
+      <ScrollFadeInUp delay={0.3}>
+        <section className="py-20 sm:py-32 bg-black">
+          <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="text-3xl sm:text-5xl font-bold mb-4">
               Отзывы наших клиентов 
@@ -81,16 +102,16 @@ export default function Home() {
               Нам доверяют: 97% клиентов приходят снова
               </p>
             </div>
-          </FadeInUp>
-          
-          <EmblaScaleReviews />
-        </div>
-      </section>
+            
+            <EmblaScaleReviews />
+          </div>
+        </section>
+      </ScrollFadeInUp>
 
       {/* FAQ Section */}
-      <section className="py-0 sm:py-0">
-        <div className="container mx-auto px-4">
-          <FadeInUp>
+      <ScrollFadeInUp delay={0.4}>
+        <section className="py-0 sm:py-0 bg-black">
+          <div className="container mx-auto px-4">
             <FaqSectionWithCategories
               title="Часто задаваемые вопросы"
               description="Ответы на самые популярные вопросы наших клиентов"
@@ -126,14 +147,14 @@ export default function Home() {
                 buttonText: "Связаться с нами"
               }}
             />
-          </FadeInUp>
-        </div>
-      </section>
+          </div>
+        </section>
+      </ScrollFadeInUp>
 
       {/* Contact Section */}
-      <section id="contacts" className="py-5 sm:py-8 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <FadeInUp>
+      <ScrollFadeInUp delay={0.5}>
+        <section id="contacts" className="py-5 sm:py-8 bg-muted/30">
+          <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="text-3xl sm:text-5xl font-bold mb-4">
                 Контакты
@@ -142,30 +163,30 @@ export default function Home() {
                 Свяжитесь с нами любым удобным способом
               </p>
             </div>
-          </FadeInUp>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
-            {/* Contact Information */}
-            <FadeInUp delay={0.2}>
-              <ContactButtons />
-            </FadeInUp>
             
-            {/* Yandex Map */}
-            <FadeInUp delay={0.4}>
-              <div className="h-[526px] rounded-2xl overflow-hidden shadow-lg">
-                <iframe
-                  src="https://yandex.ru/map-widget/v1/?um=constructor%3A14a6281f7bad364d9387bec393adc037e910fb4d021e11cde11b35d96769f6a0&amp;source=constructor"
-                  width="650"
-                  height="750"
-                  frameBorder="0"
-                  title="Салон TOPICONIC - Крымская ул., 19, корп. 1, рабочий посёлок Боброво"
-                  className="w-full h-full max-w-full"
-                ></iframe>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
+              {/* Contact Information */}
+              <div>
+                <ContactButtons />
               </div>
-            </FadeInUp>
+              
+              {/* Yandex Map */}
+              <div>
+                <div className="h-[526px] rounded-2xl overflow-hidden shadow-lg">
+                  <iframe
+                    src="https://yandex.ru/map-widget/v1/?um=constructor%3A14a6281f7bad364d9387bec393adc037e910fb4d021e11cde11b35d96769f6a0&amp;source=constructor"
+                    width="650"
+                    height="750"
+                    frameBorder="0"
+                    title="Салон TOPICONIC - Крымская ул., 19, корп. 1, рабочий посёлок Боброво"
+                    className="w-full h-full max-w-full"
+                  ></iframe>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </ScrollFadeInUp>
     </div>
   );
 }

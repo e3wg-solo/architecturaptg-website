@@ -9,6 +9,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import { EmblaCarouselType } from 'embla-carousel';
 
 interface Advantage {
   icon: React.ReactNode;
@@ -21,7 +22,11 @@ interface AdvantagesCarouselProps {
 }
 
 export function AdvantagesCarousel({ advantages }: AdvantagesCarouselProps) {
-  const [emblaApi, setEmblaApi] = useState<any>(null);
+  const [emblaApi, setEmblaApi] = useState<EmblaCarouselType | null>(null);
+
+  const handleApiChange = useCallback((api: EmblaCarouselType | undefined) => {
+    setEmblaApi(api || null);
+  }, []);
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -53,7 +58,7 @@ export function AdvantagesCarousel({ advantages }: AdvantagesCarouselProps) {
           containScroll: "trimSnaps",
         }}
         className="w-full"
-        setApi={setEmblaApi}
+                          setApi={handleApiChange}
       >
         <CarouselContent className="-ml-2 md:-ml-4">
           {advantages.map((advantage, index) => (

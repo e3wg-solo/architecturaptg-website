@@ -5,13 +5,13 @@ import { useRouter } from 'next/navigation';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
+import { EmblaCarouselType } from 'embla-carousel';
 
 interface Service {
   id: string;
@@ -79,7 +79,11 @@ const services: Service[] = [
 
 export function ServicesGrid() {
   const router = useRouter();
-  const [emblaApi, setEmblaApi] = useState<any>(null);
+  const [emblaApi, setEmblaApi] = useState<EmblaCarouselType | null>(null);
+
+  const handleApiChange = useCallback((api: EmblaCarouselType | undefined) => {
+    setEmblaApi(api || null);
+  }, []);
 
   const handleServiceClick = (serviceId: string) => {
     router.push(`/price?service=${serviceId}`);
@@ -115,7 +119,7 @@ export function ServicesGrid() {
               containScroll: "trimSnaps",
             }}
             className="w-full"
-            setApi={setEmblaApi}
+            setApi={handleApiChange}
           >
             <CarouselContent className="-ml-2 md:-ml-4">
               {services.map((service) => (
@@ -126,12 +130,13 @@ export function ServicesGrid() {
                     {/* Background Image */}
                     {service.image && (
                       <div className="absolute inset-0 will-change-transform">
-                        <img
+                        <Image
                           src={service.image}
                           alt={service.name}
-                          className="h-full w-full object-cover"
-                          loading="lazy"
-                          decoding="async"
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          priority={true}
                         />
                         <div className="absolute inset-0 bg-black/60" />
                       </div>
