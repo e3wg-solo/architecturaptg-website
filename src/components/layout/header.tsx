@@ -123,7 +123,7 @@ export function Header() {
             {/* Записаться Button - Desktop */}
             <button 
               className="hidden md:inline-flex items-center px-4 py-2 bg-brand-primary text-white text-sm font-medium rounded-lg hover:bg-brand-primary/90 transition-colors"
-              onClick={() => window.open('tel:+79850048601', '_self')}
+              onClick={() => window.open('https://wa.me/79937775559', '_blank')}
             >
               Записаться
             </button>
@@ -254,7 +254,7 @@ export function Header() {
                     className="w-full text-left px-2 py-2 text-sm font-medium bg-brand-primary text-white rounded-md hover:bg-brand-primary/90 transition-colors"
                     onClick={() => {
                       setIsMobileMenuOpen(false);
-                      window.open('tel:+79850048601', '_self');
+                      window.open('https://wa.me/79937775559', '_blank');
                     }}
                   >
                     Записаться

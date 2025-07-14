@@ -6,11 +6,11 @@ export function ContactButtons() {
   };
 
   const handlePhoneClick = () => {
-    window.open('tel:+79850048601', '_self');
+    window.open('tel:+79937775559', '_self');
   };
 
   const handleWhatsAppClick = () => {
-    window.open('https://wa.me/79850048601', '_blank');
+    window.open('https://wa.me/79937775559', '_blank');
   };
 
   const handleEmailClick = () => {
@@ -48,7 +48,7 @@ export function ContactButtons() {
         <div className="flex-1">
           <h4 className="font-medium text-lg mb-0">Телефон</h4>
           <p className="text-muted-foreground">
-            +7 (985) 004-86-01
+            +7 (993) 777-55-59
           </p>
         </div>
       </button>
@@ -65,7 +65,7 @@ export function ContactButtons() {
         <div className="flex-1">
           <h4 className="font-medium text-lg mb-0">WhatsApp</h4>
           <p className="text-muted-foreground">
-            +7 (985) 004-86-01
+            +7 (993) 777-55-59
           </p>
         </div>
       </button>

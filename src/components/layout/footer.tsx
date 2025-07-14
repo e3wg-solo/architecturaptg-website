@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Phone, MapPin, Mail, Instagram, Facebook, Youtube } from "lucide-react";
+import { Phone, MapPin } from "lucide-react";
 
 export function Footer() {
   return (
@@ -9,65 +9,43 @@ export function Footer() {
           {/* Brand Section */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-              <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-brand-primary to-brand-secondary flex items-center justify-center">
-                <span className="text-lg font-bold text-white">T</span>
-              </div>
+              <img
+                src="https://i.ibb.co/b59ZnSHN/topiconic-eng-gold-1.png"
+                alt="Topiconic"
+                className="h-8 w-auto"
+              />
               <span className="font-bold text-xl">TOPICONIC</span>
             </div>
             <p className="text-muted-foreground mb-6 max-w-md">
-              Премиальный бьюти & спа салон в сердце города. Мы создаем уникальные образы и заботимся о вашей красоте с 2020 года.
+            Премиальный бьюти & спа салон рядом с вами. Создаём индивидуальные образы и заботимся о вашей красоте с 2020 года.
             </p>
             
             {/* Contact Info */}
             <div className="space-y-3 mb-6">
               <div className="flex items-center space-x-3">
                 <MapPin className="h-5 w-5 text-brand-primary" />
-                <span className="text-muted-foreground">ул. Пушкина, 15, Москва</span>
+                <Link 
+                  href="https://yandex.ru/maps/org/topiconic/219819522730/?ll=37.613785%2C55.529398&z=15" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-brand-primary transition-colors"
+                >
+                  ул.Крымская, 19к1, рабочий посёлок Боброво, Москва
+                </Link>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-brand-primary" />
                 <Link 
-                  href="tel:+74951234567" 
+                  href="tel:+79937775559" 
                   className="text-muted-foreground hover:text-brand-primary transition-colors"
                 >
-                  +7 (495) 123-45-67
+                  +7 (993) 777-55-59
                 </Link>
               </div>
-              <div className="flex items-center space-x-3">
-                <Mail className="h-5 w-5 text-brand-primary" />
-                <Link 
-                  href="mailto:info@topiconic.ru" 
-                  className="text-muted-foreground hover:text-brand-primary transition-colors"
-                >
-                  info@topiconic.ru
-                </Link>
-              </div>
+
             </div>
 
-            {/* Social Links */}
-            <div className="flex space-x-4">
-              <Link 
-                href="https://instagram.com" 
-                className="text-muted-foreground hover:text-brand-primary transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram className="h-5 w-5" />
-              </Link>
-              <Link 
-                href="https://facebook.com" 
-                className="text-muted-foreground hover:text-brand-primary transition-colors"
-                aria-label="Facebook"
-              >
-                <Facebook className="h-5 w-5" />
-              </Link>
-              <Link 
-                href="https://youtube.com" 
-                className="text-muted-foreground hover:text-brand-primary transition-colors"
-                aria-label="YouTube"
-              >
-                <Youtube className="h-5 w-5" />
-              </Link>
-            </div>
+
           </div>
 
           {/* Navigation */}
@@ -114,29 +92,76 @@ export function Footer() {
             <h3 className="font-semibold mb-4">Услуги</h3>
             <ul className="space-y-2">
               <li>
-                <span className="text-muted-foreground">
-                  Косметология
-                </span>
+                <Link 
+                  href="/price?service=aesthetic-cosmetology"
+                  className="text-muted-foreground hover:text-brand-primary transition-colors"
+                >
+                  Косметология эстетическая
+                </Link>
               </li>
               <li>
-                <span className="text-muted-foreground">
-                  Парикмахерские услуги
-                </span>
+                <Link 
+                  href="/price?service=hardware-cosmetology"
+                  className="text-muted-foreground hover:text-brand-primary transition-colors"
+                >
+                  Косметология аппаратная
+                </Link>
               </li>
               <li>
-                <span className="text-muted-foreground">
+                <Link 
+                  href="/price?service=hairdressing"
+                  className="text-muted-foreground hover:text-brand-primary transition-colors"
+                >
+                  Парикмахерский зал
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/price?service=nail-service"
+                  className="text-muted-foreground hover:text-brand-primary transition-colors"
+                >
                   Ногтевой сервис
-                </span>
+                </Link>
               </li>
               <li>
-                <span className="text-muted-foreground">
-                  Массаж и СПА
-                </span>
+                <Link 
+                  href="/price?service=massage"
+                  className="text-muted-foreground hover:text-brand-primary transition-colors"
+                >
+                  Массаж
+                </Link>
               </li>
               <li>
-                <span className="text-muted-foreground">
-                  Визаж и брови
-                </span>
+                <Link 
+                  href="/price?service=eyebrows-lashes"
+                  className="text-muted-foreground hover:text-brand-primary transition-colors"
+                >
+                  Брови и ресницы
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/price?service=tattoo"
+                  className="text-muted-foreground hover:text-brand-primary transition-colors"
+                >
+                  Татуаж
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/price?service=makeup"
+                  className="text-muted-foreground hover:text-brand-primary transition-colors"
+                >
+                  Макияж
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/price?service=solarium"
+                  className="text-muted-foreground hover:text-brand-primary transition-colors"
+                >
+                  Солярий
+                </Link>
               </li>
             </ul>
           </div>

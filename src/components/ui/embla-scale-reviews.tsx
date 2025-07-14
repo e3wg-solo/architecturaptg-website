@@ -311,7 +311,7 @@ export function EmblaScaleReviews() {
       {/* Yandex Reviews Actions */}
       <div className="mt-8 text-center">
         <a
-          href="https://yandex.ru/maps/org/jay_beauty_project/149247486936/?add-review"
+          href="https://yandex.ru/maps/org/topiconic/219819522730/reviews/?add-review=true&ll=37.613785%2C55.529398&z=14"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-3 px-8 py-4 bg-secondary text-secondary-foreground border border-primary/20 rounded-xl hover:bg-secondary/80 transition-all duration-200 font-medium shadow-sm hover:shadow-md"

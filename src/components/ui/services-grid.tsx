@@ -151,7 +151,7 @@ export function ServicesGrid() {
                       <Button 
                         variant="secondary"
                         size="lg"
-                        className="rounded-xl py-5 px-10 text-xl sm:py-4 sm:px-8 sm:text-lg"
+                        className="border-1 rounded-xl py-5 px-10 text-xl sm:py-4 sm:px-8 sm:text-lg"
                         onClick={() => handleServiceClick(service.id)}
                       >
                         Узнать цены

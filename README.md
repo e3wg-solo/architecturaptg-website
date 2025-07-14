@@ -60,9 +60,9 @@ topiconic/
 ## 🎨 Design System
 
 ### Color Palette
-- **Brand Primary:** `#6366f1` (Indigo)
-- **Brand Secondary:** `#8b5cf6` (Purple)
-- **Brand Accent:** `#06b6d4` (Cyan)
+- **Brand Primary:** `#d7b64c` (Gold)
+- **Brand Secondary:** `#d7b64c` (Gold)
+- **Brand Accent:** `#d7b64c` (Gold)
 - **Success:** `#22c55e` (Green)
 - **Warning:** `#f59e0b` (Amber)
 - **Destructive:** `#ef4444` (Red)

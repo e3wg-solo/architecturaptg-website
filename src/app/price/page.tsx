@@ -91,11 +91,11 @@ export default function PricePage() {
   }, [serviceId]);
 
   const handleBooking = () => {
-    window.open('tel:+79850048601', '_self');
+    window.open('tel:+79937775559', '_self');
   };
 
   const handleWhatsApp = () => {
-    window.open('https://wa.me/79850048601', '_blank');
+    window.open('https://wa.me/79937775559', '_blank');
   };
 
   return (

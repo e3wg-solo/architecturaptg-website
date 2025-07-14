@@ -1,3 +1,5 @@
+"use client";
+
 import { FadeInUp } from "@/components/animations";
 import { AnimatedButton } from "@/components/animations/animated-button";
 import { EmblaScaleReviews } from "@/components/ui/embla-scale-reviews";
@@ -5,43 +7,45 @@ import { FaqSectionWithCategories } from "@/components/ui/faq-with-categories";
 import { ContactButtons } from "@/components/ui/contact-buttons";
 import { SalonFeatureCarousel } from "@/components/ui/salon-feature-carousel";
 import { ServicesGrid } from "@/components/ui/services-grid";
-import { ArrowRight } from "lucide-react";
+import { GooeyText } from "@/components/ui/gooey-text-morphing";
 
 export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-background via-background to-accent/10">
-        <div className="container mx-auto px-4 py-20 sm:py-32">
+        <div className="container mx-auto px-4 py-25 sm:py-32">
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-brand-primary/10 text-brand-primary px-4 py-2 rounded-full text-sm font-medium mb-8">
               Добро пожаловать в Topiconic
             </div>
             
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
-              Мы не создаём образы —
-              <span className="bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
-                {" "}мы их раскрываем
-              </span>
+            Ты заслуживаешь быть
+              <br />
+              <GooeyText
+                texts={["счастливой", "уверенной", "любимой", "безупречной", "вдохновлённой", "расслабленной"]}
+                morphTime={1.5}
+                cooldownTime={0.8}
+                textClassName="text-4xl sm:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent"
+              />
             </h1>
             
             <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
-              Салон красоты полного цикла в сердце города. Доверьтесь нашим мастерам — 
-              и откройте в себе новую красоту.
+            Уютное пространство, где вы можете расслабиться, довериться и стать лучшей версией себя.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <AnimatedButton 
-                size="lg" 
-                className="text-lg px-8 py-6 h-auto"
+                className="bg-brand-primary text-white hover:bg-brand-primary/90 text-lg px-8 py-4 h-auto rounded-xl font-medium transition-colors shadow-lg hover:shadow-xl"
+                onClick={() => window.open('https://wa.me/79937775559', '_blank')}
               >
                 Записаться
-                <ArrowRight className="ml-2 h-5 w-5" />
               </AnimatedButton>
               <AnimatedButton 
-                variant="outline" 
-                size="lg"
-                className="text-lg px-8 py-6 h-auto"
+                variant="outline"
+                className="border-1 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-white text-lg px-8 py-4 h-auto rounded-xl font-medium transition-all shadow-md hover:shadow-lg"
+                onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 Посмотреть услуги
               </AnimatedButton>
