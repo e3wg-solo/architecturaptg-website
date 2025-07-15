@@ -42,7 +42,7 @@ export default function Home() {
                 <AnimatedText
                   texts={["счастливой", "уверенной", "любимой", "безупречной", "вдохновлённой", "ухоженной"]}
                   type="typewriter"
-                  typeSpeed={100}
+                  typeSpeed={200}
                   deleteSpeed={50}
                   pauseTime={1000}
                   textClassName="text-4xl sm:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent"
@@ -50,13 +50,13 @@ export default function Home() {
               </h1>
             </FadeInUp>
             
-            <FadeInUp delay={0.4}>
+            <FadeInUp delay={0.5}>
               <p className="text-base sm:text-xl text-muted-foreground mb-24 sm:mb-20 max-w-2xl mx-auto leading-relaxed">
               Уютное пространство, где вы можете расслабиться, довериться и стать лучшей версией себя.
               </p>
             </FadeInUp>
             
-            <FadeInUp delay={0.6}>
+            <FadeInUp delay={0.7}>
               <div className="flex flex-row flex-wrap justify-center gap-4">
                 <AnimatedButton 
                   className="w-full max-w-[180px] sm:w-auto bg-brand-primary text-white hover:bg-brand-primary/90 text-lg px-6 py-4 h-auto rounded-xl font-medium transition-colors shadow-lg hover:shadow-xl"
@@ -79,11 +79,11 @@ export default function Home() {
 
 
       {/* Services Section */}
-      <ScrollFadeInUp>
+      <FadeInUp delay={0.3}>
         <section id="services" className="bg-black">
           <ServicesGrid />
         </section>
-      </ScrollFadeInUp>
+      </FadeInUp>
 
       {/* Salon Services Carousel Section */}
       <ScrollFadeInUp delay={0.3}>
