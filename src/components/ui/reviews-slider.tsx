@@ -150,14 +150,14 @@ export function ReviewsSlider() {
       
       {/* Custom Navigation Buttons */}
       <div className="flex items-center justify-center gap-4 mt-8">
-        <button className="swiper-button-prev-custom h-12 w-12 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-colors flex items-center justify-center group">
+        <button className="swiper-button-prev-custom h-12 w-12 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-colors flex items-center justify-center group cursor-pointer">
           <ChevronLeft className="h-5 w-5 group-hover:scale-110 transition-transform" />
         </button>
         
         {/* Custom Pagination */}
         <div className="swiper-pagination-custom flex gap-2 [&_.swiper-pagination-bullet]:w-2 [&_.swiper-pagination-bullet]:h-2 [&_.swiper-pagination-bullet]:bg-muted-foreground [&_.swiper-pagination-bullet]:rounded-full [&_.swiper-pagination-bullet]:opacity-50 [&_.swiper-pagination-bullet-active]:bg-primary [&_.swiper-pagination-bullet-active]:opacity-100 [&_.swiper-pagination-bullet-active]:scale-125"></div>
         
-        <button className="swiper-button-next-custom h-12 w-12 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-colors flex items-center justify-center group">
+        <button className="swiper-button-next-custom h-12 w-12 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-colors flex items-center justify-center group cursor-pointer">
           <ChevronRight className="h-5 w-5 group-hover:scale-110 transition-transform" />
         </button>
       </div>

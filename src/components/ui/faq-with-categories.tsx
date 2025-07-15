@@ -90,7 +90,7 @@ const FaqSectionWithCategories = React.forwardRef<HTMLElement, FaqSectionWithCat
                 
                 <button
                   onClick={() => window.open('https://wa.me/79937775559', '_blank')}
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-secondary text-secondary-foreground border border-primary/20 rounded-xl hover:bg-secondary/80 transition-all duration-200 font-medium shadow-sm hover:shadow-md mb-4"
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-secondary text-secondary-foreground border border-primary/20 rounded-xl hover:bg-secondary/80 transition-all duration-200 font-medium shadow-sm hover:shadow-md mb-4 cursor-pointer"
                 >
                   <MessageCircleHeart className="h-5 w-5" />
                   Связаться с нами

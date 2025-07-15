@@ -19,7 +19,7 @@ export function ContactButtons() {
     <div className="space-y-6">
       <button 
         onClick={handleAddressClick}
-        className="flex items-center gap-4 w-full p-4 rounded-xl bg-card hover:bg-accent/50 transition-colors text-left border border-border/60 hover:border-primary/20"
+        className="flex items-center gap-4 w-full p-4 rounded-xl bg-card hover:bg-accent/50 transition-colors text-left border border-border/60 hover:border-primary/20 cursor-pointer"
       >
         <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="text-primary" style={{transform: 'rotate(270deg) scaleX(-1)'}}>
@@ -36,7 +36,7 @@ export function ContactButtons() {
       
       <button 
         onClick={handlePhoneClick}
-        className="flex items-center gap-4 w-full p-4 rounded-xl bg-card hover:bg-accent/50 transition-colors text-left border border-border/60 hover:border-primary/20"
+        className="flex items-center gap-4 w-full p-4 rounded-xl bg-card hover:bg-accent/50 transition-colors text-left border border-border/60 hover:border-primary/20 cursor-pointer"
       >
         <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="text-primary">
@@ -53,7 +53,7 @@ export function ContactButtons() {
       
       <button 
         onClick={handleWhatsAppClick}
-        className="flex items-center gap-4 w-full p-4 rounded-xl bg-card hover:bg-accent/50 transition-colors text-left border border-border/60 hover:border-primary/20"
+        className="flex items-center gap-4 w-full p-4 rounded-xl bg-card hover:bg-accent/50 transition-colors text-left border border-border/60 hover:border-primary/20 cursor-pointer"
       >
         <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" className="text-primary">
@@ -68,7 +68,7 @@ export function ContactButtons() {
         </div>
       </button>
       
-      <button className="flex items-center gap-4 w-full p-4 rounded-xl bg-card hover:bg-accent/50 transition-colors text-left border border-border/60 hover:border-primary/20">
+      <button className="flex items-center gap-4 w-full p-4 rounded-xl bg-card hover:bg-accent/50 transition-colors text-left border border-border/60 hover:border-primary/20 cursor-pointer">
         <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 48 48" className="text-primary">
             <g fill="none" stroke="currentColor" strokeLinejoin="round" strokeWidth="4">
@@ -86,7 +86,7 @@ export function ContactButtons() {
       </button>
       
       <button 
-        className="flex items-center gap-4 w-full p-4 rounded-xl bg-card hover:bg-accent/50 transition-colors text-left border border-border/60 hover:border-primary/20"
+        className="flex items-center gap-4 w-full p-4 rounded-xl bg-card hover:bg-accent/50 transition-colors text-left border border-border/60 hover:border-primary/20 cursor-pointer"
       >
         <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" className="text-primary">

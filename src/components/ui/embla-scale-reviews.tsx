@@ -146,7 +146,7 @@ function ReviewCard({ review, scale = 1 }: { review: Review; scale?: number }) {
         {isLongText && (
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="mt-3 text-primary hover:text-primary/80 transition-colors inline-flex items-center gap-1 text-sm font-medium"
+            className="mt-3 text-primary hover:text-primary/80 transition-colors inline-flex items-center gap-1 text-sm font-medium cursor-pointer"
           >
             {isExpanded ? (
               <>

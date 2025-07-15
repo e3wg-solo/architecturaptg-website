@@ -153,14 +153,14 @@ export function EmblaReviewsSlider() {
       <div className="flex items-center justify-center gap-4 mt-8">
         <button 
           onClick={scrollPrev}
-          className="h-12 w-12 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-colors flex items-center justify-center group"
+          className="h-12 w-12 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-colors flex items-center justify-center group cursor-pointer"
         >
           <ChevronLeft className="h-5 w-5 group-hover:scale-110 transition-transform" />
         </button>
         
         <button 
           onClick={scrollNext}
-          className="h-12 w-12 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-colors flex items-center justify-center group"
+          className="h-12 w-12 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-colors flex items-center justify-center group cursor-pointer"
         >
           <ChevronRight className="h-5 w-5 group-hover:scale-110 transition-transform" />
         </button>

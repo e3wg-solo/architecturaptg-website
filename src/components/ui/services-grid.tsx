@@ -30,7 +30,7 @@ const services: Service[] = [
   {
     id: 'hardware-cosmetology',
     name: 'Косметология аппаратная',
-    description: 'Современные процедуры с использованием оборудования',
+    description: 'Процедуры с использованием новейших технологий',
     image: "https://i.pinimg.com/1200x/35/be/de/35bede0e01b7bcd81ecb8f753d36ebad.jpg"
   },
   {

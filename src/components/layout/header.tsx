@@ -126,7 +126,7 @@ export function Header() {
           <div className="flex items-center space-x-4">
             {/* Записаться Button - Desktop */}
             <button 
-              className="hidden md:inline-flex items-center px-4 py-2 bg-brand-primary text-white text-sm font-medium rounded-lg hover:bg-brand-primary/90 transition-colors"
+              className="hidden md:inline-flex items-center px-4 py-2 bg-brand-primary text-white text-sm font-medium rounded-lg hover:bg-brand-primary/90 transition-colors cursor-pointer"
               onClick={() => window.open('https://wa.me/79937775559', '_blank')}
             >
               Записаться
@@ -134,7 +134,7 @@ export function Header() {
             
             {/* Mobile Navigation Button */}
             <motion.button 
-              className="md:hidden p-2 rounded-md hover:bg-accent hover:text-accent-foreground relative"
+              className="md:hidden p-2 rounded-md hover:bg-accent hover:text-accent-foreground relative cursor-pointer"
               onClick={toggleMobileMenu}
               aria-expanded={isMobileMenuOpen}
               aria-label="Toggle mobile menu"
@@ -255,7 +255,7 @@ export function Header() {
                 </motion.div>
                 <motion.div variants={itemVariants}>
                   <button 
-                    className="w-full text-left px-2 py-2 text-sm font-medium bg-brand-primary text-white rounded-md hover:bg-brand-primary/90 transition-colors"
+                    className="w-full text-left px-2 py-2 text-sm font-medium bg-brand-primary text-white rounded-md hover:bg-brand-primary/90 transition-colors cursor-pointer"
                     onClick={() => {
                       setIsMobileMenuOpen(false);
                       window.open('https://wa.me/79937775559', '_blank');

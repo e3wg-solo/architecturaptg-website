@@ -377,6 +377,31 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Ensure all clickable elements have cursor-pointer */
+button, [role="button"], [tabindex="0"], .cursor-pointer {
+  cursor: pointer;
+}
+
+/* Ensure links have cursor-pointer */
+a, a:hover, a:focus {
+  cursor: pointer;
+}
+
+/* Ensure form elements have appropriate cursors */
+input[type="button"], input[type="submit"], input[type="reset"] {
+  cursor: pointer;
+}
+
+/* Ensure disabled elements have appropriate cursor */
+button:disabled, [role="button"]:disabled, input:disabled {
+  cursor: not-allowed;
+}
+
+/* Swiper pagination bullets */
+.swiper-pagination-bullet {
+  cursor: pointer;
+}
+
 /* Ensure SF Pro Display is applied to all text elements */
 h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, textarea, select {
   font-family: var(--font-sans);
@@ -541,6 +566,15 @@ html {
   }
 }
 
+@keyframes gradient-x {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
 .animate-fade-in {
   animation: fadeIn var(--animate-duration-normal) ease-out;
 }
@@ -551,6 +585,10 @@ html {
 
 .animate-slide-in-top {
   animation: slideInFromTop var(--animate-duration-normal) ease-out;
+}
+
+.animate-gradient-x {
+  animation: gradient-x 3s ease infinite;
 }
 
 .dark {

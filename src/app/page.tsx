@@ -7,7 +7,7 @@ import { FaqSectionWithCategories } from "@/components/ui/faq-with-categories";
 import { ContactButtons } from "@/components/ui/contact-buttons";
 import { SalonFeatureCarousel } from "@/components/ui/salon-feature-carousel";
 import { ServicesGrid } from "@/components/ui/services-grid";
-import { GooeyText } from "@/components/ui/gooey-text-morphing";
+import { AnimatedText } from "@/components/ui/animated-text";
 
 export default function Home() {
   return (
@@ -27,44 +27,46 @@ export default function Home() {
         </FadeIn>
         
         {/* Контент поверх */}
-        <div className="relative z-10 container mx-auto px-4 py-25 sm:py-32">
+        <div className="relative z-10 container mx-auto px-4 pt-12 pb-24 sm:pt-32 sm:pb-20">
           <div className="max-w-4xl mx-auto text-center">
-            <FadeInDown delay={0.4}>
+            <FadeInDown delay={0.3}>
               <div className="inline-flex items-center gap-2 bg-brand-primary/10 text-brand-primary px-4 py-2 rounded-full text-sm font-medium mb-8">
                 Добро пожаловать в Topiconic
               </div>
             </FadeInDown>
             
-            <FadeInUp delay={0.6}>
+            <FadeInUp delay={0.4}>
               <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
-              Ты заслуживаешь быть
+              Ты достойна быть
                 <br />
-                <GooeyText
-                  texts={["счастливой", "уверенной", "любимой", "безупречной", "вдохновлённой", "расслабленной"]}
-                  morphTime={1.5}
-                  cooldownTime={0.8}
+                <AnimatedText
+                  texts={["счастливой", "уверенной", "любимой", "безупречной", "вдохновлённой", "ухоженной"]}
+                  type="typewriter"
+                  typeSpeed={100}
+                  deleteSpeed={50}
+                  pauseTime={1000}
                   textClassName="text-4xl sm:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent"
                 />
               </h1>
             </FadeInUp>
             
-            <FadeInUp delay={0.8}>
-              <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
+            <FadeInUp delay={0.4}>
+              <p className="text-base sm:text-xl text-muted-foreground mb-24 sm:mb-20 max-w-2xl mx-auto leading-relaxed">
               Уютное пространство, где вы можете расслабиться, довериться и стать лучшей версией себя.
               </p>
             </FadeInUp>
             
-            <FadeInUp delay={1.0}>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <FadeInUp delay={0.6}>
+              <div className="flex flex-row flex-wrap justify-center gap-4">
                 <AnimatedButton 
-                  className="bg-brand-primary text-white hover:bg-brand-primary/90 text-lg px-8 py-4 h-auto rounded-xl font-medium transition-colors shadow-lg hover:shadow-xl"
+                  className="w-full max-w-[180px] sm:w-auto bg-brand-primary text-white hover:bg-brand-primary/90 text-lg px-6 py-4 h-auto rounded-xl font-medium transition-colors shadow-lg hover:shadow-xl"
                   onClick={() => window.open('https://wa.me/79937775559', '_blank')}
                 >
                   Записаться
                 </AnimatedButton>
                 <AnimatedButton 
                   variant="outline"
-                  className="border-1 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-white text-lg px-8 py-4 h-auto rounded-xl font-medium transition-all shadow-md hover:shadow-lg"
+                  className="w-full max-w-[180px] sm:w-auto border-1 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-white text-lg px-6 py-4 h-auto rounded-xl font-medium transition-all shadow-md hover:shadow-lg"
                   onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
                 >
                   Посмотреть услуги
@@ -84,7 +86,7 @@ export default function Home() {
       </ScrollFadeInUp>
 
       {/* Salon Services Carousel Section */}
-      <ScrollFadeInUp delay={0.5}>
+      <ScrollFadeInUp delay={0.3}>
         <section className="py-0 bg-black">
           <SalonFeatureCarousel />
         </section>
@@ -152,7 +154,7 @@ export default function Home() {
       </ScrollFadeInUp>
 
       {/* Contact Section */}
-      <ScrollFadeInUp delay={0.5}>
+      <ScrollFadeInUp delay={0.4}>
         <section id="contacts" className="py-5 sm:py-8 bg-muted/30">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
