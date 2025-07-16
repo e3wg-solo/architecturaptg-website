@@ -41,10 +41,8 @@ export default function Home() {
                 <br />
                 <AnimatedText
                   texts={["счастливой", "уверенной", "любимой", "безупречной", "вдохновлённой", "ухоженной"]}
-                  type="typewriter"
-                  typeSpeed={200}
-                  deleteSpeed={50}
-                  pauseTime={1000}
+                  type="rotating"
+                  duration={2000}
                   textClassName="text-4xl sm:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent"
                 />
               </h1>
