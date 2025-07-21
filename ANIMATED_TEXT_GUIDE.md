@@ -57,6 +57,21 @@
 />
 ```
 
+### 6. Shimmer Text
+Переливающийся эффект (статический текст)
+```tsx
+<AnimatedText
+  texts={["счастливой"]} // Показывает только первый текст
+  type="shimmer"
+  shimmerDuration="2s"
+/>
+
+// Или напрямую:
+<TextShimmer duration="2s">
+  Переливающийся текст
+</TextShimmer>
+```
+
 ## Использование в проекте
 
 ### Основной способ (рекомендуется)
@@ -74,10 +89,11 @@ import { AnimatedText } from "@/components/ui/animated-text";
 
 ### Импорт отдельных компонентов
 ```tsx
-import { RotatingText, TypewriterText, SlideText, WaveText, GradientText } from "@/components/ui/animated-text";
+import { RotatingText, TypewriterText, SlideText, WaveText, GradientText, TextShimmer } from "@/components/ui/animated-text";
 
 // Или прямой импорт
 import { RotatingText } from "@/components/ui/rotating-text";
+import { TextShimmer } from "@/components/ui/text-shimmer";
 ```
 
 ## Параметры
@@ -97,6 +113,9 @@ import { RotatingText } from "@/components/ui/rotating-text";
 
 #### SlideText
 - `direction?: "up" | "down"` - Направление слайда
+
+#### TextShimmer
+- `shimmerDuration?: string` - Длительность анимации переливания (по умолчанию "2s")
 
 ## Смена анимации в главном компоненте
 

@@ -38,6 +38,11 @@ export function AnimatedTextDemo({
       type: "gradient",
       name: "Gradient Text",
       description: "Движущийся градиент"
+    },
+    {
+      type: "shimmer",
+      name: "Shimmer Text",
+      description: "Переливающийся эффект"
     }
   ];
 

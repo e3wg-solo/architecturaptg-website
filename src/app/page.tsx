@@ -8,6 +8,7 @@ import { ContactButtons } from "@/components/ui/contact-buttons";
 import { SalonFeatureCarousel } from "@/components/ui/salon-feature-carousel";
 import { ServicesGrid } from "@/components/ui/services-grid";
 import { AnimatedText } from "@/components/ui/animated-text";
+import { TextShimmer } from "@/components/ui/text-shimmer";
 
 export default function Home() {
   return (
@@ -37,14 +38,9 @@ export default function Home() {
             
             <FadeInUp delay={0.4}>
               <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
-              Ты достойна быть
-                <br />
-                <AnimatedText
-                  texts={["счастливой", "уверенной", "любимой", "безупречной", "вдохновлённой", "ухоженной"]}
-                  type="rotating"
-                  duration={2000}
-                  textClassName="text-4xl sm:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent"
-                />
+                <TextShimmer>
+                  Запишитесь и начните меняться уже сегодня
+                </TextShimmer>
               </h1>
             </FadeInUp>
             
