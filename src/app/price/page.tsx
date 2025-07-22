@@ -57,7 +57,7 @@ function PricePageContent() {
 
     // Загружаем актуальные данные
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 20000); // 20 секунд таймаут
+    const timeoutId = setTimeout(() => controller.abort(), 20000); // 2 0 секунд таймаут
 
     fetch('/api/pricelist', { 
       signal: controller.signal,
