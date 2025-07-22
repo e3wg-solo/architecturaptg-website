@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
-import { getSheetData } from '@/lib/sheets';
+import { getSheetData, PriceItem } from '@/lib/sheets';
 
 // Простой in-memory кэш
-let cachedData: any = null;
+let cachedData: PriceItem[] | null = null;
 let cacheTimestamp = 0;
 const CACHE_TTL = 5 * 60 * 1000; // 5 минут
 
