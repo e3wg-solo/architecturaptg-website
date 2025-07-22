@@ -6,8 +6,10 @@ import { FadeInUp } from "@/components/animations";
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { ArrowLeft, Phone, MessageCircle } from 'lucide-react';
+import { ArrowLeft, Phone, MessageCircle, Loader2 } from 'lucide-react';
 import Link from 'next/link';
+import { PriceItem } from '@/lib/sheets';
+import { fallbackPrices } from '@/lib/fallback-prices';
 
 const serviceNames: { [key: string]: string } = {
   'aesthetic-cosmetology': 'Косметология эстетическая',
@@ -21,67 +23,93 @@ const serviceNames: { [key: string]: string } = {
   'solarium': 'Солярий',
 };
 
-const samplePrices: { [key: string]: { name: string; price: string; duration?: string }[] } = {
-  'aesthetic-cosmetology': [
-    { name: 'Чистка лица', price: '3 500 ₽', duration: '90 мин' },
-    { name: 'Пилинг химический', price: '2 500 ₽', duration: '60 мин' },
-    { name: 'Уход за кожей лица', price: '2 000 ₽', duration: '60 мин' },
-    { name: 'Мезотерапия', price: '4 500 ₽', duration: '45 мин' },
-  ],
-  'hardware-cosmetology': [
-    { name: 'Лазерная эпиляция', price: '1 500 ₽', duration: '30-90 мин' },
-    { name: 'Фотоомоложение', price: '5 000 ₽', duration: '60 мин' },
-    { name: 'RF-лифтинг', price: '3 500 ₽', duration: '45 мин' },
-    { name: 'Ультразвуковая чистка', price: '2 500 ₽', duration: '60 мин' },
-  ],
-  'hairdressing': [
-    { name: 'Стрижка женская', price: '1 800 ₽', duration: '60 мин' },
-    { name: 'Стрижка мужская', price: '1 200 ₽', duration: '40 мин' },
-    { name: 'Окрашивание', price: '3 500 ₽', duration: '120-180 мин' },
-    { name: 'Укладка', price: '1 500 ₽', duration: '45 мин' },
-  ],
-  'nail-service': [
-    { name: 'Маникюр с покрытием', price: '2 500 ₽', duration: '90 мин' },
-    { name: 'Педикюр с покрытием', price: '3 500 ₽', duration: '120 мин' },
-    { name: 'Наращивание ногтей', price: '3 000 ₽', duration: '120 мин' },
-    { name: 'Дизайн ногтей', price: '500 ₽', duration: '30 мин' },
-  ],
-  'massage': [
-    { name: 'Расслабляющий', price: '3 500 ₽', duration: '60 мин' },
-    { name: 'Антицеллюлитный', price: '4 000 ₽', duration: '90 мин' },
-    { name: 'Лимфодренажный', price: '4 500 ₽', duration: '90 мин' },
-    { name: 'Спортивный', price: '3 800 ₽', duration: '60 мин' },
-  ],
-  'eyebrows-lashes': [
-    { name: 'Коррекция бровей', price: '1 200 ₽', duration: '45 мин' },
-    { name: 'Наращивание ресниц', price: '2 800 ₽', duration: '120 мин' },
-    { name: 'Ламинирование ресниц', price: '2 500 ₽', duration: '90 мин' },
-    { name: 'Окрашивание бровей', price: '800 ₽', duration: '30 мин' },
-  ],
-  'tattoo': [
-    { name: 'Татуаж бровей', price: '8 000 ₽', duration: '180 мин' },
-    { name: 'Татуаж губ', price: '10 000 ₽', duration: '180 мин' },
-    { name: 'Татуаж век', price: '7 000 ₽', duration: '120 мин' },
-    { name: 'Коррекция татуажа', price: '3 000 ₽', duration: '90 мин' },
-  ],
-  'makeup': [
-    { name: 'Дневной макияж', price: '2 500 ₽', duration: '60 мин' },
-    { name: 'Вечерний макияж', price: '3 500 ₽', duration: '90 мин' },
-    { name: 'Свадебный макияж', price: '5 000 ₽', duration: '120 мин' },
-    { name: 'Урок макияжа', price: '4 000 ₽', duration: '120 мин' },
-  ],
-  'solarium': [
-    { name: 'Вертикальный солярий', price: '100 ₽/мин', duration: '5-12 мин' },
-    { name: 'Горизонтальный солярий', price: '80 ₽/мин', duration: '8-15 мин' },
-    { name: 'Турбо-солярий', price: '120 ₽/мин', duration: '3-8 мин' },
-    { name: 'Абонемент на месяц', price: '3 500 ₽', duration: 'безлимит' },
-  ],
-};
-
 function PricePageContent() {
   const searchParams = useSearchParams();
   const serviceId = searchParams.get('service');
   const [openAccordion, setOpenAccordion] = useState<string>('');
+  const [data, setData] = useState<Record<string, { name: string; price: string; duration?: string }[]>>(fallbackPrices);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Показываем fallback данные сразу
+    setIsLoading(false);
+    setIsUpdating(true);
+
+    // Проверяем кэш
+    const cachedData = localStorage.getItem('pricelistCache');
+    const cacheTimestamp = localStorage.getItem('pricelistCacheTimestamp');
+    const now = Date.now();
+    const cacheAge = cacheTimestamp ? now - parseInt(cacheTimestamp) : Infinity;
+    
+    // Если кэш свежий (менее 10 минут), используем его
+    if (cachedData && cacheAge < 10 * 60 * 1000) {
+      try {
+        const parsed = JSON.parse(cachedData);
+        setData(parsed);
+        setIsUpdating(false);
+        return;
+      } catch (e) {
+        console.error('Error parsing cached data:', e);
+      }
+    }
+
+    // Загружаем актуальные данные
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 20000); // 20 секунд таймаут
+
+    fetch('/api/pricelist', { 
+      signal: controller.signal,
+      cache: 'no-cache'
+    })
+      .then((res) => {
+        clearTimeout(timeoutId);
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((json) => {
+        if (json.data && json.data.length > 0) {
+          const grouped: Record<string, { name: string; price: string; duration?: string }[]> = {};
+          json.data.forEach((item: PriceItem) => {
+            if (!grouped[item.categoryId]) {
+              grouped[item.categoryId] = [];
+            }
+            grouped[item.categoryId].push({
+              name: item.name,
+              price: item.price,
+              duration: item.duration,
+            });
+          });
+          setData(grouped);
+          
+          // Сохраняем в кэш
+          localStorage.setItem('pricelistCache', JSON.stringify(grouped));
+          localStorage.setItem('pricelistCacheTimestamp', now.toString());
+        }
+        setError(null);
+      })
+      .catch((err) => {
+        console.error('Failed to fetch prices:', err);
+        if (err.name === 'AbortError') {
+          setError('Превышено время ожидания загрузки');
+        } else {
+          setError('Ошибка загрузки актуальных цен');
+        }
+        // Оставляем fallback данные при ошибке
+      })
+      .finally(() => {
+        setIsUpdating(false);
+        clearTimeout(timeoutId);
+      });
+
+    return () => {
+      controller.abort();
+      clearTimeout(timeoutId);
+    };
+  }, []);
 
   // Устанавливаем открытый accordion при загрузке страницы
   useEffect(() => {
@@ -130,41 +158,69 @@ function PricePageContent() {
           <div className="max-w-4xl mx-auto">
             <FadeInUp>
               <Card>
-                <CardHeader>
-                  <CardTitle className="text-2xl">Все наши услуги</CardTitle>
+                <CardHeader className="relative">
+                  <CardTitle className="text-2xl flex items-center gap-2">
+                    Все наши услуги
+                    {isUpdating && (
+                      <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
+                    )}
+                  </CardTitle>
+                  {error && (
+                    <p className="text-sm text-yellow-600 bg-yellow-50 dark:bg-yellow-900/20 p-2 rounded">
+                      {error}. Показаны базовые цены.
+                    </p>
+                  )}
+                  {isUpdating && !error && (
+                    <p className="text-sm text-blue-600 bg-blue-50 dark:bg-blue-900/20 p-2 rounded">
+                      Загружаем актуальные цены...
+                    </p>
+                  )}
                 </CardHeader>
                 <CardContent>
-                  <Accordion 
-                    type="single" 
-                    collapsible 
-                    value={openAccordion}
-                    onValueChange={setOpenAccordion}
-                  >
-                    {Object.entries(serviceNames).map(([key, name]) => (
-                      <AccordionItem key={key} value={key}>
-                        <AccordionTrigger className="text-lg font-semibold">
-                          {name}
-                        </AccordionTrigger>
-                        <AccordionContent>
-                          <div className="space-y-4">
-                                                         {samplePrices[key]?.map((item, index) => (
-                               <div key={index} className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-4 bg-muted/30 rounded-lg space-y-2 sm:space-y-0">
-                                 <div className="flex-1">
-                                   <h3 className="font-semibold text-base leading-tight">{item.name}</h3>
-                                   {item.duration && (
-                                     <p className="text-sm text-muted-foreground mt-1">Время: {item.duration}</p>
-                                   )}
-                                 </div>
-                                 <div className="text-left sm:text-right flex-shrink-0">
-                                   <p className="font-bold text-lg text-primary">{item.price}</p>
-                                 </div>
-                               </div>
-                             ))}
-                          </div>
-                        </AccordionContent>
-                      </AccordionItem>
-                    ))}
-                  </Accordion>
+                  {isLoading ? (
+                    <div className="flex items-center justify-center py-12">
+                      <Loader2 className="h-8 w-8 animate-spin" />
+                      <span className="ml-2">Загрузка прайс-листа...</span>
+                    </div>
+                  ) : (
+                    <Accordion 
+                      type="single" 
+                      collapsible 
+                      value={openAccordion}
+                      onValueChange={setOpenAccordion}
+                    >
+                      {Object.entries(serviceNames).map(([key, name]) => (
+                        <AccordionItem key={key} value={key}>
+                          <AccordionTrigger className="text-lg font-semibold">
+                            {name}
+                          </AccordionTrigger>
+                          <AccordionContent>
+                            <div className="space-y-4">
+                              {data[key] && data[key].length > 0 ? (
+                                data[key].map((item, index) => (
+                                  <div key={index} className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-4 bg-muted/30 rounded-lg space-y-2 sm:space-y-0">
+                                    <div className="flex-1">
+                                      <h3 className="font-semibold text-base leading-tight">{item.name}</h3>
+                                      {item.duration && (
+                                        <p className="text-sm text-muted-foreground mt-1">Время: {item.duration}</p>
+                                      )}
+                                    </div>
+                                    <div className="text-left sm:text-right flex-shrink-0">
+                                      <p className="font-bold text-lg text-primary">{item.price}</p>
+                                    </div>
+                                  </div>
+                                ))
+                              ) : (
+                                <p className="text-muted-foreground text-center py-4">
+                                  Услуги в данной категории временно недоступны
+                                </p>
+                              )}
+                            </div>
+                          </AccordionContent>
+                        </AccordionItem>
+                      ))}
+                    </Accordion>
+                  )}
                 </CardContent>
               </Card>
             </FadeInUp>

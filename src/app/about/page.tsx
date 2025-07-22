@@ -16,17 +16,17 @@ import {
 import { EmblaCarouselType } from 'embla-carousel';
 
 const teamPhotos = [
-  "https://i.ibb.co/d4pKzprx/ph6.webp",
-  "https://i.ibb.co/tMPSk1qc/ph2-3.webp",
-  "https://i.ibb.co/rffxbrvp/ph5.webp",
-  "https://i.ibb.co/4nmYNTZp/ph2-2.webp",
-  "https://i.ibb.co/d0B0gkZq/ph2-1.webp",
-  "https://i.ibb.co/MyxTzs2f/ph1-2.webp",
-  "https://i.ibb.co/99qj3MM1/ph1-1.webp",
-  "https://i.ibb.co/ZvnNh4G/ph4.webp",
-  "https://i.ibb.co/F4VypN3z/ph3.webp",
-  "https://i.ibb.co/cKv5nc1D/ph2.webp",
-  "https://i.ibb.co/WWBzgX9W/ph1.webp",
+  "/gallery/ph6.webp",
+  "/gallery/ph2-3.webp",
+  "/gallery/ph5.webp",
+  "/gallery/ph2-2.webp",
+  "/gallery/ph2-1.webp",
+  "/gallery/ph1-2.webp",
+  "/gallery/ph1-1.webp",
+  "/gallery/ph4.webp",
+  "/gallery/ph3.webp",
+  "/gallery/ph2.webp",
+  "/gallery/ph1.webp",
 ];
 
 
@@ -331,10 +331,14 @@ export default function AboutUsPage() {
                           <Image
                             src={photo}
                             alt={`Gallery ${index + 1}`}
-                            fill
-                            className="object-cover"
+                            width={800}
+                            height={450}
+                            className="object-cover w-full h-auto rounded-2xl"
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            loading="lazy"
+                            loading={index === 0 ? 'eager' : 'lazy'}
+                            priority={index === 0}
+                            placeholder="blur"
+                            blurDataURL="/placeholder/blur.jpg"
                           />
                         </div>
                       </CarouselItem>
