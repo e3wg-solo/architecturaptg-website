@@ -6,7 +6,7 @@ import { FadeInUp } from "@/components/animations";
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { ArrowLeft, Phone, MessageCircle, RefreshCw, AlertCircle } from 'lucide-react';
+import { ArrowLeft, Phone, MessageCircle, AlertCircle } from 'lucide-react';
 import Link from 'next/link';
 import { PriceItem } from '@/lib/sheets';
 
@@ -27,87 +27,109 @@ function PricePageContent() {
   const serviceId = searchParams.get('service');
   const [openAccordion, setOpenAccordion] = useState<string>('');
   const [data, setData] = useState<Record<string, { name: string; price: string; duration?: string }[]> | null>(null);
-  const [lastUpdate, setLastUpdate] = useState<string | null>(null);
-  const [isManualRefreshing, setIsManualRefreshing] = useState(false);
-  const [hasAttemptedLoad, setHasAttemptedLoad] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    // Загружаем данные ТОЛЬКО из кэша
-    const loadCachedData = () => {
+    const loadData = async () => {
+      // Сначала пробуем загрузить из локального кэша
       const cachedData = localStorage.getItem('pricelistCache');
-      const cacheTimestamp = localStorage.getItem('pricelistCacheTimestamp');
+      const cachedTimestamp = localStorage.getItem('pricelistCacheTimestamp');
       
-      if (cachedData && cacheTimestamp) {
+      if (cachedData) {
         try {
           const parsed = JSON.parse(cachedData);
           setData(parsed);
-          setLastUpdate(new Date(parseInt(cacheTimestamp)).toLocaleDateString('ru-RU', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
-          }));
+          setIsLoaded(true);
+          
+          // В фоне проверяем, нет ли более свежих данных
+          checkForUpdates(cachedTimestamp);
+          return;
         } catch (e) {
           console.error('Error parsing cached data:', e);
         }
       }
-      setHasAttemptedLoad(true);
+      
+      // Если нет кэша, загружаем данные с сервера (только серверный кэш, не Google Sheets)
+      try {
+        const response = await fetch('/api/pricelist', { 
+          cache: 'no-cache'
+        });
+
+        if (response.ok) {
+          const json = await response.json();
+          
+          if (json.data && json.data.length > 0) {
+            const grouped: Record<string, { name: string; price: string; duration?: string }[]> = {};
+            json.data.forEach((item: PriceItem) => {
+              if (!grouped[item.categoryId]) {
+                grouped[item.categoryId] = [];
+              }
+              grouped[item.categoryId].push({
+                name: item.name,
+                price: item.price,
+                duration: item.duration,
+              });
+            });
+
+            setData(grouped);
+            
+            // Сохраняем в локальный кэш
+            localStorage.setItem('pricelistCache', JSON.stringify(grouped));
+            if (json.timestamp) {
+              localStorage.setItem('pricelistCacheTimestamp', json.timestamp.toString());
+            }
+          }
+        }
+      } catch (error) {
+        console.log('Failed to load prices:', error);
+      }
+      
+      setIsLoaded(true);
     };
 
-    // Загружаем только кэшированные данные
-    loadCachedData();
-  }, []);
+    // Функция для проверки обновлений в фоне
+    const checkForUpdates = async (cachedTimestamp: string | null) => {
+      try {
+        const response = await fetch('/api/pricelist', { 
+          cache: 'no-cache'
+        });
 
-  // Ручное обновление данных (единственный способ получить новые данные)
-  const handleManualRefresh = async () => {
-    setIsManualRefreshing(true);
-    try {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 30000);
+        if (response.ok) {
+          const json = await response.json();
+          
+          // Если есть данные и они новее наших
+          if (json.data && json.data.length > 0 && json.timestamp) {
+            const serverTime = json.timestamp;
+            const clientTime = cachedTimestamp ? parseInt(cachedTimestamp) : 0;
+            
+            if (serverTime > clientTime) {
+              // Обновляем данные в фоне
+              const grouped: Record<string, { name: string; price: string; duration?: string }[]> = {};
+              json.data.forEach((item: PriceItem) => {
+                if (!grouped[item.categoryId]) {
+                  grouped[item.categoryId] = [];
+                }
+                grouped[item.categoryId].push({
+                  name: item.name,
+                  price: item.price,
+                  duration: item.duration,
+                });
+              });
 
-      const response = await fetch('/api/pricelist?refresh=true', { 
-        signal: controller.signal,
-        cache: 'no-cache'
-      });
-
-      clearTimeout(timeoutId);
-
-      if (response.ok) {
-        const json = await response.json();
-        if (json.data && json.data.length > 0) {
-          const grouped: Record<string, { name: string; price: string; duration?: string }[]> = {};
-          json.data.forEach((item: PriceItem) => {
-            if (!grouped[item.categoryId]) {
-              grouped[item.categoryId] = [];
+              setData(grouped);
+              localStorage.setItem('pricelistCache', JSON.stringify(grouped));
+              localStorage.setItem('pricelistCacheTimestamp', serverTime.toString());
             }
-            grouped[item.categoryId].push({
-              name: item.name,
-              price: item.price,
-              duration: item.duration,
-            });
-          });
-
-          // Обновляем данные и кэш
-          setData(grouped);
-          const now = Date.now();
-          localStorage.setItem('pricelistCache', JSON.stringify(grouped));
-          localStorage.setItem('pricelistCacheTimestamp', now.toString());
-          setLastUpdate(new Date(now).toLocaleDateString('ru-RU', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
-          }));
+          }
         }
+      } catch (error) {
+        // Ошибки игнорируем, работаем с кэшированными данными
+        console.log('Background check failed:', error);
       }
-    } catch (error) {
-      console.error('Manual refresh failed:', error);
-    } finally {
-      setIsManualRefreshing(false);
-    }
-  };
+    };
+
+    loadData();
+  }, []);
 
   // Устанавливаем открытый accordion при загрузке страницы
   useEffect(() => {
@@ -124,11 +146,22 @@ function PricePageContent() {
     window.open('https://wa.me/79937775559', '_blank');
   };
 
-  // Если данных нет и мы уже пытались загрузить
-  if (hasAttemptedLoad && !data) {
+  // Показываем загрузку только до первого рендера
+  if (!isLoaded) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Загрузка...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Если данных нет - показываем сообщение
+  if (!data || Object.keys(data).length === 0) {
     return (
       <div className="min-h-screen bg-black">
-        {/* Header */}
         <section className="bg-black via-background to-accent/10 pt-5">
           <div className="container mx-auto px-4 bg-black">
             <div className="max-w-4xl mx-auto">
@@ -152,7 +185,6 @@ function PricePageContent() {
           </div>
         </section>
 
-        {/* Empty State */}
         <section className="py-8">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
@@ -166,24 +198,15 @@ function PricePageContent() {
                   <CardContent>
                     <div className="text-center py-12">
                       <AlertCircle className="h-16 w-16 mx-auto mb-4 text-muted-foreground" />
-                      <h3 className="text-xl font-semibold mb-2">Цены не загружены</h3>
+                      <h3 className="text-xl font-semibold mb-2">Цены временно недоступны</h3>
                       <p className="text-muted-foreground mb-6">
-                        Актуальные цены пока не были загружены из системы управления
+                        Актуальные цены обновляются администратором
                       </p>
-                      <Button
-                        onClick={handleManualRefresh}
-                        disabled={isManualRefreshing}
-                        className="flex items-center gap-2 mx-auto"
-                      >
-                        <RefreshCw className={`h-4 w-4 ${isManualRefreshing ? 'animate-spin' : ''}`} />
-                        {isManualRefreshing ? 'Загрузка...' : 'Загрузить цены'}
-                      </Button>
                     </div>
                   </CardContent>
                 </Card>
               </FadeInUp>
               
-              {/* Contact Buttons */}
               <FadeInUp delay={0.4}>
                 <div className="mt-12 p-8 bg-card rounded-2xl">
                   <h3 className="text-xl font-bold mb-4 text-center">
@@ -218,9 +241,9 @@ function PricePageContent() {
     );
   }
 
+  // Показываем данные
   return (
     <div className="min-h-screen bg-black">
-      {/* Header */}
       <section className="bg-black via-background to-accent/10 pt-5">
         <div className="container mx-auto px-4 bg-black">
           <div className="max-w-4xl mx-auto">
@@ -244,83 +267,58 @@ function PricePageContent() {
         </div>
       </section>
 
-      {/* Prices */}
       <section className="py-8">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <FadeInUp>
               <Card>
-                <CardHeader className="relative">
-                  <div className="flex items-center justify-between">
-                    <CardTitle className="text-2xl">
-                      Все наши услуги
-                    </CardTitle>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={handleManualRefresh}
-                      disabled={isManualRefreshing}
-                      className="flex items-center gap-2"
-                    >
-                      <RefreshCw className={`h-4 w-4 ${isManualRefreshing ? 'animate-spin' : ''}`} />
-                      Обновить
-                    </Button>
-                  </div>
-                  {lastUpdate && (
-                    <p className="text-sm text-muted-foreground">
-                      Последнее обновление: {lastUpdate}
-                    </p>
-                  )}
+                <CardHeader>
+                  <CardTitle className="text-2xl">
+                    Все наши услуги
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  {data ? (
-                    <Accordion 
-                      type="single" 
-                      collapsible 
-                      value={openAccordion}
-                      onValueChange={setOpenAccordion}
-                    >
-                      {Object.entries(serviceNames).map(([key, name]) => (
-                        <AccordionItem key={key} value={key}>
-                          <AccordionTrigger className="text-lg font-semibold">
-                            {name}
-                          </AccordionTrigger>
-                          <AccordionContent>
-                            <div className="space-y-4">
-                              {data[key] && data[key].length > 0 ? (
-                                data[key].map((item, index) => (
-                                  <div key={index} className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-4 bg-muted/30 rounded-lg space-y-2 sm:space-y-0">
-                                    <div className="flex-1">
-                                      <h3 className="font-semibold text-base leading-tight">{item.name}</h3>
-                                      {item.duration && (
-                                        <p className="text-sm text-muted-foreground mt-1">Время: {item.duration}</p>
-                                      )}
-                                    </div>
-                                    <div className="text-left sm:text-right flex-shrink-0">
-                                      <p className="font-bold text-lg text-primary">{item.price}</p>
-                                    </div>
+                  <Accordion 
+                    type="single" 
+                    collapsible 
+                    value={openAccordion}
+                    onValueChange={setOpenAccordion}
+                  >
+                    {Object.entries(serviceNames).map(([key, name]) => (
+                      <AccordionItem key={key} value={key}>
+                        <AccordionTrigger className="text-lg font-semibold">
+                          {name}
+                        </AccordionTrigger>
+                        <AccordionContent>
+                          <div className="space-y-4">
+                            {data[key] && data[key].length > 0 ? (
+                              data[key].map((item, index) => (
+                                <div key={index} className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-4 bg-muted/30 rounded-lg space-y-2 sm:space-y-0">
+                                  <div className="flex-1">
+                                    <h3 className="font-semibold text-base leading-tight">{item.name}</h3>
+                                    {item.duration && (
+                                      <p className="text-sm text-muted-foreground mt-1">Время: {item.duration}</p>
+                                    )}
                                   </div>
-                                ))
-                              ) : (
-                                <p className="text-muted-foreground text-center py-4">
-                                  Услуги в данной категории пока не добавлены
-                                </p>
-                              )}
-                            </div>
-                          </AccordionContent>
-                        </AccordionItem>
-                      ))}
-                    </Accordion>
-                  ) : (
-                    <div className="text-center py-8">
-                      <p className="text-muted-foreground">Данные загружаются...</p>
-                    </div>
-                  )}
+                                  <div className="text-left sm:text-right flex-shrink-0">
+                                    <p className="font-bold text-lg text-primary">{item.price}</p>
+                                  </div>
+                                </div>
+                              ))
+                            ) : (
+                              <p className="text-muted-foreground text-center py-4">
+                                Услуги в данной категории пока не добавлены
+                              </p>
+                            )}
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
                 </CardContent>
               </Card>
             </FadeInUp>
             
-            {/* Contact Buttons */}
             <FadeInUp delay={0.4}>
               <div className="mt-12 p-8 bg-card rounded-2xl">
                 <h3 className="text-xl font-bold mb-4 text-center">
@@ -357,7 +355,14 @@ function PricePageContent() {
 
 export default function PricePage() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Загрузка...</p>
+        </div>
+      </div>
+    }>
       <PricePageContent />
     </Suspense>
   );
