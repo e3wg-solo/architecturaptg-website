@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getSheetData } from '@/lib/sheets';
+import { getSheetData, PriceItem } from '@/lib/sheets';
 import fs from 'fs/promises';
 import path from 'path';
 
@@ -10,7 +10,7 @@ const CACHE_DURATION = 30 * 24 * 60 * 60 * 1000; // 30 дней (практич�
 async function ensureCacheDir() {
   try {
     await fs.mkdir(path.dirname(CACHE_FILE_PATH), { recursive: true });
-  } catch (error) {
+  } catch {
     // Директория уже существует
   }
 }
@@ -26,14 +26,14 @@ async function loadFromCache() {
     if (now - timestamp < CACHE_DURATION) {
       return data;
     }
-  } catch (error) {
+  } catch {
     console.log('No cached data found');
   }
   return null;
 }
 
 // Сохраняем данные в серверный кэш
-async function saveToCache(data: any) {
+async function saveToCache(data: PriceItem[]) {
   try {
     await ensureCacheDir();
     const cacheData = {
