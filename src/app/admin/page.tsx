@@ -44,7 +44,7 @@ export default function AdminPage() {
           message: data.error || 'Ошибка при обновлении цен'
         });
       }
-    } catch (error) {
+    } catch {
       setResult({
         success: false,
         message: 'Ошибка соединения с сервером'
