@@ -6,10 +6,9 @@ import { FadeInUp } from "@/components/animations";
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { ArrowLeft, Phone, MessageCircle, Loader2 } from 'lucide-react';
+import { ArrowLeft, Phone, MessageCircle, RefreshCw, AlertCircle } from 'lucide-react';
 import Link from 'next/link';
 import { PriceItem } from '@/lib/sheets';
-import { fallbackPrices } from '@/lib/fallback-prices';
 
 const serviceNames: { [key: string]: string } = {
   'aesthetic-cosmetology': 'Косметология эстетическая',
@@ -27,50 +26,55 @@ function PricePageContent() {
   const searchParams = useSearchParams();
   const serviceId = searchParams.get('service');
   const [openAccordion, setOpenAccordion] = useState<string>('');
-  const [data, setData] = useState<Record<string, { name: string; price: string; duration?: string }[]>>(fallbackPrices);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isUpdating, setIsUpdating] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [data, setData] = useState<Record<string, { name: string; price: string; duration?: string }[]> | null>(null);
+  const [lastUpdate, setLastUpdate] = useState<string | null>(null);
+  const [isManualRefreshing, setIsManualRefreshing] = useState(false);
+  const [hasAttemptedLoad, setHasAttemptedLoad] = useState(false);
 
   useEffect(() => {
-    // Показываем fallback данные сразу
-    setIsLoading(false);
-    setIsUpdating(true);
-
-    // Проверяем кэш
-    const cachedData = localStorage.getItem('pricelistCache');
-    const cacheTimestamp = localStorage.getItem('pricelistCacheTimestamp');
-    const now = Date.now();
-    const cacheAge = cacheTimestamp ? now - parseInt(cacheTimestamp) : Infinity;
-    
-    // Если кэш свежий (менее 10 минут), используем его
-    if (cachedData && cacheAge < 10 * 60 * 1000) {
-      try {
-        const parsed = JSON.parse(cachedData);
-        setData(parsed);
-        setIsUpdating(false);
-        return;
-      } catch (e) {
-        console.error('Error parsing cached data:', e);
-      }
-    }
-
-    // Загружаем актуальные данные
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 20000); // 2 0 секунд таймаут
-
-    fetch('/api/pricelist', { 
-      signal: controller.signal,
-      cache: 'no-cache'
-    })
-      .then((res) => {
-        clearTimeout(timeoutId);
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
+    // Загружаем данные ТОЛЬКО из кэша
+    const loadCachedData = () => {
+      const cachedData = localStorage.getItem('pricelistCache');
+      const cacheTimestamp = localStorage.getItem('pricelistCacheTimestamp');
+      
+      if (cachedData && cacheTimestamp) {
+        try {
+          const parsed = JSON.parse(cachedData);
+          setData(parsed);
+          setLastUpdate(new Date(parseInt(cacheTimestamp)).toLocaleDateString('ru-RU', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+          }));
+        } catch (e) {
+          console.error('Error parsing cached data:', e);
         }
-        return res.json();
-      })
-      .then((json) => {
+      }
+      setHasAttemptedLoad(true);
+    };
+
+    // Загружаем только кэшированные данные
+    loadCachedData();
+  }, []);
+
+  // Ручное обновление данных (единственный способ получить новые данные)
+  const handleManualRefresh = async () => {
+    setIsManualRefreshing(true);
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 30000);
+
+      const response = await fetch('/api/pricelist?refresh=true', { 
+        signal: controller.signal,
+        cache: 'no-cache'
+      });
+
+      clearTimeout(timeoutId);
+
+      if (response.ok) {
+        const json = await response.json();
         if (json.data && json.data.length > 0) {
           const grouped: Record<string, { name: string; price: string; duration?: string }[]> = {};
           json.data.forEach((item: PriceItem) => {
@@ -83,33 +87,27 @@ function PricePageContent() {
               duration: item.duration,
             });
           });
+
+          // Обновляем данные и кэш
           setData(grouped);
-          
-          // Сохраняем в кэш
+          const now = Date.now();
           localStorage.setItem('pricelistCache', JSON.stringify(grouped));
           localStorage.setItem('pricelistCacheTimestamp', now.toString());
+          setLastUpdate(new Date(now).toLocaleDateString('ru-RU', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+          }));
         }
-        setError(null);
-      })
-      .catch((err) => {
-        console.error('Failed to fetch prices:', err);
-        if (err.name === 'AbortError') {
-          setError('Превышено время ожидания загрузки');
-        } else {
-          setError('Ошибка загрузки актуальных цен');
-        }
-        // Оставляем fallback данные при ошибке
-      })
-      .finally(() => {
-        setIsUpdating(false);
-        clearTimeout(timeoutId);
-      });
-
-    return () => {
-      controller.abort();
-      clearTimeout(timeoutId);
-    };
-  }, []);
+      }
+    } catch (error) {
+      console.error('Manual refresh failed:', error);
+    } finally {
+      setIsManualRefreshing(false);
+    }
+  };
 
   // Устанавливаем открытый accordion при загрузке страницы
   useEffect(() => {
@@ -125,6 +123,100 @@ function PricePageContent() {
   const handleWhatsApp = () => {
     window.open('https://wa.me/79937775559', '_blank');
   };
+
+  // Если данных нет и мы уже пытались загрузить
+  if (hasAttemptedLoad && !data) {
+    return (
+      <div className="min-h-screen bg-black">
+        {/* Header */}
+        <section className="bg-black via-background to-accent/10 pt-5">
+          <div className="container mx-auto px-4 bg-black">
+            <div className="max-w-4xl mx-auto">
+              <FadeInUp>
+                <div className="flex items-center gap-4 mb-8">
+                  <Link href="/" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
+                    <ArrowLeft className="h-5 w-5" />
+                    Назад на главную
+                  </Link>
+                </div>
+                
+                <h1 className="text-4xl sm:text-5xl font-bold mb-4">
+                  Прайс-лист
+                </h1>
+                
+                <p className="text-xl text-muted-foreground mb-8">
+                  Актуальные цены на все наши услуги
+                </p>
+              </FadeInUp>
+            </div>
+          </div>
+        </section>
+
+        {/* Empty State */}
+        <section className="py-8">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <FadeInUp>
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-2xl text-center">
+                      Прайс-лист
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-center py-12">
+                      <AlertCircle className="h-16 w-16 mx-auto mb-4 text-muted-foreground" />
+                      <h3 className="text-xl font-semibold mb-2">Цены не загружены</h3>
+                      <p className="text-muted-foreground mb-6">
+                        Актуальные цены пока не были загружены из системы управления
+                      </p>
+                      <Button
+                        onClick={handleManualRefresh}
+                        disabled={isManualRefreshing}
+                        className="flex items-center gap-2 mx-auto"
+                      >
+                        <RefreshCw className={`h-4 w-4 ${isManualRefreshing ? 'animate-spin' : ''}`} />
+                        {isManualRefreshing ? 'Загрузка...' : 'Загрузить цены'}
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </FadeInUp>
+              
+              {/* Contact Buttons */}
+              <FadeInUp delay={0.4}>
+                <div className="mt-12 p-8 bg-card rounded-2xl">
+                  <h3 className="text-xl font-bold mb-4 text-center">
+                    Записаться на услугу
+                  </h3>
+                  <p className="text-muted-foreground text-center mb-6">
+                    Свяжитесь с нами для записи или уточнения цен
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <Button 
+                      onClick={handleBooking}
+                      className="flex items-center gap-2"
+                    >
+                      <Phone className="h-4 w-4" />
+                      Позвонить
+                    </Button>
+                    <Button 
+                      variant="outline"
+                      onClick={handleWhatsApp}
+                      className="flex items-center gap-2"
+                    >
+                      <MessageCircle className="h-4 w-4" />
+                      WhatsApp
+                    </Button>
+                  </div>
+                </div>
+              </FadeInUp>
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-black">
@@ -159,30 +251,29 @@ function PricePageContent() {
             <FadeInUp>
               <Card>
                 <CardHeader className="relative">
-                  <CardTitle className="text-2xl flex items-center gap-2">
-                    Все наши услуги
-                    {isUpdating && (
-                      <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
-                    )}
-                  </CardTitle>
-                  {error && (
-                    <p className="text-sm text-yellow-600 bg-yellow-50 dark:bg-yellow-900/20 p-2 rounded">
-                      {error}. Показаны базовые цены.
-                    </p>
-                  )}
-                  {isUpdating && !error && (
-                    <p className="text-sm text-blue-600 bg-blue-50 dark:bg-blue-900/20 p-2 rounded">
-                      Загружаем актуальные цены...
+                  <div className="flex items-center justify-between">
+                    <CardTitle className="text-2xl">
+                      Все наши услуги
+                    </CardTitle>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={handleManualRefresh}
+                      disabled={isManualRefreshing}
+                      className="flex items-center gap-2"
+                    >
+                      <RefreshCw className={`h-4 w-4 ${isManualRefreshing ? 'animate-spin' : ''}`} />
+                      Обновить
+                    </Button>
+                  </div>
+                  {lastUpdate && (
+                    <p className="text-sm text-muted-foreground">
+                      Последнее обновление: {lastUpdate}
                     </p>
                   )}
                 </CardHeader>
                 <CardContent>
-                  {isLoading ? (
-                    <div className="flex items-center justify-center py-12">
-                      <Loader2 className="h-8 w-8 animate-spin" />
-                      <span className="ml-2">Загрузка прайс-листа...</span>
-                    </div>
-                  ) : (
+                  {data ? (
                     <Accordion 
                       type="single" 
                       collapsible 
@@ -212,7 +303,7 @@ function PricePageContent() {
                                 ))
                               ) : (
                                 <p className="text-muted-foreground text-center py-4">
-                                  Услуги в данной категории временно недоступны
+                                  Услуги в данной категории пока не добавлены
                                 </p>
                               )}
                             </div>
@@ -220,6 +311,10 @@ function PricePageContent() {
                         </AccordionItem>
                       ))}
                     </Accordion>
+                  ) : (
+                    <div className="text-center py-8">
+                      <p className="text-muted-foreground">Данные загружаются...</p>
+                    </div>
                   )}
                 </CardContent>
               </Card>
