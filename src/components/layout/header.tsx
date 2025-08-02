@@ -1,12 +1,24 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import Image from "next/image";
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 100); // можно менять порог
+    };
+    onScroll(); // Проверяем начальную позицию
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -68,28 +80,19 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto px-4 py-4">
+    <header
+      className={`sticky z-40 rounded-3xl border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-all duration-300 mx-0 sm:mx-6 lg:mx-24 ${
+        isClient && scrolled ? "top-0" : "top-20"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-4">
         <div className="flex h-10 items-center justify-between">
-          {/* Logo/Site Title */}
-          <div className="flex items-center space-x-4">
-            <Link href="/" className="flex items-center space-x-2">
-              <Image
-                src="https://i.ibb.co/y2pTSmN/topiconic-eng-gold-1.webp"
-                alt="Topiconic"
-                width={100}
-                height={100}
-                className="h-10 md:h-10 w-auto"
-                priority
-              />
-              <span className="hidden font-bold text-xl sm:inline-block">
-                
-              </span>
-            </Link>
-          </div>
+
+          {/* Empty space for mobile - pushes burger to the right */}
+          <div className="md:hidden flex-1"></div>
 
           {/* Navigation - Desktop */}
-          <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
+          <nav className="hidden md:flex items-center space-x-14 text-m font-medium">
             <Link 
               href="/" 
               className="transition-colors hover:text-brand-primary"

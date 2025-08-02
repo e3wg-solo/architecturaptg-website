@@ -20,6 +20,12 @@ const nextConfig: NextConfig = {
         hostname: 'avatars.mds.yandex.net',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
