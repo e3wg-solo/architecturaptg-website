@@ -6,7 +6,7 @@ import Image from "next/image";
 
 export function TopInfoBar() {
   return (
-    <div className="relative z-50 text-white bg-black/60 backdrop-blur-sm">
+    <div className="relative z-50 text-white">
       {/* Top Black Bar */}
       <div className="container mx-auto px-4 py-3">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
