@@ -1,13 +1,12 @@
 "use client";
 
-import { FadeInUp, FadeInDown, ScrollFadeInUp } from "@/components/animations";
-import { AnimatedButton } from "@/components/animations/animated-button";
+import { FadeInUp, ScrollFadeInUp } from "@/components/animations";
 import { EmblaScaleReviews } from "@/components/ui/embla-scale-reviews";
 import { FaqSectionWithCategories } from "@/components/ui/faq-with-categories";
 import { ContactButtons } from "@/components/ui/contact-buttons";
 import { SalonFeatureCarousel } from "@/components/ui/salon-feature-carousel";
 import { ServicesGrid } from "@/components/ui/services-grid";
-import { TextShimmer } from "@/components/ui/text-shimmer";
+
 
 export default function Home() {
   return (

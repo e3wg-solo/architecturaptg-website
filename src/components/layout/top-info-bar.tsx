@@ -1,12 +1,12 @@
 "use client";
 
 import { FadeInDown } from "@/components/animations";
-import { MapPin, Clock, Facebook, Instagram, MessageCircle } from "lucide-react";
+import { MapPin, Clock } from "lucide-react";
 import Image from "next/image";
 
 export function TopInfoBar() {
   return (
-    <div className="relative z-50 text-white">
+    <div className="relative z-50 text-white bg-black/60 backdrop-blur-sm">
       {/* Top Black Bar */}
       <div className="container mx-auto px-4 py-3">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
