@@ -19,7 +19,7 @@ export function BackgroundImageSlider() {
       setCurrentImageIndex((prevIndex) => 
         prevIndex === images.length - 1 ? 0 : prevIndex + 1
       );
-    }, 10000); // Смена каждые 10 секунд
+    }, 7000); // Смена каждые 7 секунд
 
     return () => clearInterval(interval);
   }, []);
