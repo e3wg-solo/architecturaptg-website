@@ -13,7 +13,7 @@ export function TopInfoBar() {
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
           {/* Logo */}
           <FadeInDown delay={0.1}>
-            <Link href="/" className="flex items-center space-x-3 cursor-pointer transition-transform duration-300 hover:scale-105">
+            <Link href="/" className="flex items-center space-x-3 cursor-pointer transition-transform duration-300">
               <Image
                 src="/logos/topiconic-logo.webp"
                 alt="Topiconic"
