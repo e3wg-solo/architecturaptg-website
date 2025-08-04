@@ -6,6 +6,7 @@ import { FaqSectionWithCategories } from "@/components/ui/faq-with-categories";
 import { ContactButtons } from "@/components/ui/contact-buttons";
 import { SalonFeatureCarousel } from "@/components/ui/salon-feature-carousel";
 import { ServicesGrid } from "@/components/ui/services-grid";
+import { PromoCardSlider } from "@/components/ui/promo-card-slider";
 
 
 export default function Home() {
@@ -17,9 +18,16 @@ export default function Home() {
 
           {/* Hero Section */}
           <section className="overflow-hidden">
-            <div className="container mx-auto px-4 pt-128 pb-14 sm:pt-32 sm:pb-120">
+            <div className="container mx-auto px-4 pt-68 pb-14 sm:pt-84 sm:pb-20">
               <div className="max-w-4xl mx-auto text-center">
-                {/* Пустое пространство для будущего контента */}
+                <FadeInUp delay={0.2}>
+                  <div className="mb-8">
+                  </div>
+                </FadeInUp>
+                
+                <FadeInUp delay={0.4}>
+                  <PromoCardSlider />
+                </FadeInUp>
               </div>
             </div>
           </section>

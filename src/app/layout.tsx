@@ -1,4 +1,6 @@
 import type { Metadata, Viewport } from "next";
+import Script from 'next/script';
+import Image from 'next/image';
 import "./globals.css";
 
 import { Header } from "@/components/layout/header";
@@ -114,11 +116,11 @@ export default function RootLayout({
     <html lang="ru" className="dark">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="preconnect" href="https://fonts.cdnfonts.com" />
-        <link rel="preload" href="https://fonts.cdnfonts.com/s/92806/SF-Pro-Display-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preload" href="https://fonts.cdnfonts.com/s/92806/SF-Pro-Display-Medium.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preload" href="https://fonts.cdnfonts.com/s/92806/SF-Pro-Display-Semibold.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preload" href="https://fonts.cdnfonts.com/s/92806/SF-Pro-Display-Bold.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        {/* Local SF Pro Display Font Preloads */}
+        <link rel="preload" href="/fonts/SF-Pro-Display-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/SF-Pro-Display-Medium.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/SF-Pro-Display-Semibold.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/SF-Pro-Display-Bold.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         
         {/* Структурированные данные для Google */}
         <script
@@ -216,37 +218,32 @@ export default function RootLayout({
           }}
         />
         
-        {/* Yandex.Metrika */}
-        <script
+        {/* Yandex.Metrika - исправленная версия */}
+        <Script
+          id="yandex-metrika"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
-              (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-              m[i].l=1*new Date();
-              for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-              k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-              (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+              (function(m,e,t,r,i,k,a){
+                m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+                m[i].l=1*new Date();
+                for (var j = 0; j < document.scripts.length; j++) {
+                  if (document.scripts[j].src === r) { return; }
+                }
+                k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+              })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
               ym(YOUR_YANDEX_ID, "init", {
-                defer: true
+                defer: true,
+                clickmap: true,
+                trackLinks: true,
+                accurateTrackBounce: true
               });
             `
           }}
         />
         
-        {/* Google Analytics */}
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID"
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'YOUR_GA_ID');
-            `
-          }}
-        />
+
       </head>
       <body
         className="antialiased min-h-screen bg-background font-sans sf-pro-display-optimized"
@@ -266,8 +263,14 @@ export default function RootLayout({
         
         {/* Yandex.Metrika noscript */}
         <noscript>
-          <div>
-            <img src="https://mc.yandex.ru/watch/YOUR_YANDEX_ID" style={{position:'absolute', left:'-9999px'}} alt="" />
+          <div style={{position:'absolute', left:'-9999px'}}>
+            <Image 
+              src="https://mc.yandex.ru/watch/YOUR_YANDEX_ID" 
+              alt="" 
+              width={1}
+              height={1}
+              unoptimized
+            />
           </div>
         </noscript>
       </body>

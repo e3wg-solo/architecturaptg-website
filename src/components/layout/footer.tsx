@@ -11,7 +11,7 @@ export function Footer() {
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
               <Image
-                src="https://i.ibb.co/y2pTSmN/topiconic-eng-gold-1.webp"
+                src="/logos/topiconic-logo.webp"
                 alt="Topiconic"
                 width={100}
                 height={100}

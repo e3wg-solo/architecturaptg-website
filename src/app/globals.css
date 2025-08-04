@@ -3,11 +3,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* SF Pro Display Font Face */
+/* SF Pro Display Local Font Face - Optimized */
 @font-face {
   font-family: 'SF Pro Display';
-  src: url('https://fonts.cdnfonts.com/s/92806/SF-Pro-Display-Regular.woff2') format('woff2'),
-       url('https://fonts.cdnfonts.com/s/92806/SF-Pro-Display-Regular.woff') format('woff');
+  src: url('/fonts/SF-Pro-Display-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -15,8 +14,7 @@
 
 @font-face {
   font-family: 'SF Pro Display';
-  src: url('https://fonts.cdnfonts.com/s/92806/SF-Pro-Display-Medium.woff2') format('woff2'),
-       url('https://fonts.cdnfonts.com/s/92806/SF-Pro-Display-Medium.woff') format('woff');
+  src: url('/fonts/SF-Pro-Display-Medium.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -24,8 +22,7 @@
 
 @font-face {
   font-family: 'SF Pro Display';
-  src: url('https://fonts.cdnfonts.com/s/92806/SF-Pro-Display-Semibold.woff2') format('woff2'),
-       url('https://fonts.cdnfonts.com/s/92806/SF-Pro-Display-Semibold.woff') format('woff');
+  src: url('/fonts/SF-Pro-Display-Semibold.woff2') format('woff2');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
@@ -33,36 +30,8 @@
 
 @font-face {
   font-family: 'SF Pro Display';
-  src: url('https://fonts.cdnfonts.com/s/92806/SF-Pro-Display-Bold.woff2') format('woff2'),
-       url('https://fonts.cdnfonts.com/s/92806/SF-Pro-Display-Bold.woff') format('woff');
+  src: url('/fonts/SF-Pro-Display-Bold.woff2') format('woff2');
   font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'SF Pro Display';
-  src: url('https://fonts.cdnfonts.com/s/92806/SF-Pro-Display-Light.woff2') format('woff2'),
-       url('https://fonts.cdnfonts.com/s/92806/SF-Pro-Display-Light.woff') format('woff');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'SF Pro Display';
-  src: url('https://fonts.cdnfonts.com/s/92806/SF-Pro-Display-Heavy.woff2') format('woff2'),
-       url('https://fonts.cdnfonts.com/s/92806/SF-Pro-Display-Heavy.woff') format('woff');
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'SF Pro Display';
-  src: url('https://fonts.cdnfonts.com/s/92806/SF-Pro-Display-Black.woff2') format('woff2'),
-       url('https://fonts.cdnfonts.com/s/92806/SF-Pro-Display-Black.woff') format('woff');
-  font-weight: 900;
   font-style: normal;
   font-display: swap;
 }
@@ -598,6 +567,14 @@ html {
 
 .animate-gradient-x {
   animation: gradient-x 3s ease infinite;
+}
+
+.animate-marquee {
+  animation: marquee var(--duration) linear infinite;
+}
+
+.animate-marquee-vertical {
+  animation: marquee-vertical var(--duration) linear infinite;
 }
 
 .dark {

@@ -3,7 +3,7 @@
 import { FadeInUp } from "@/components/animations";
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, Users, Award, Heart, Star, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowLeft, Users, Award, Heart, Star, X, ChevronLeft, ChevronRight, PartyPopper } from 'lucide-react';
 import Link from 'next/link';
 import { useState, useCallback, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
@@ -13,6 +13,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import { Marquee } from "@/components/ui/3d-testimonails";
 import { EmblaCarouselType } from 'embla-carousel';
 
 const teamPhotos = [
@@ -288,7 +289,20 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-
+      {/* Бегущая строка */}
+      <section className="py-2 bg-brand-primary overflow-hidden">
+        <Marquee 
+          repeat={6} 
+          pauseOnHover={false}
+          className="text-white text-xl sm:text-xl lg:text-2xl font-bold"
+        >
+          <span className="mx-8 flex items-center gap-3">
+            <PartyPopper className="h-6 w-6 sm:h-8 sm:w-8" />
+            Нам исполнилось 5 лет ! 
+            <PartyPopper className="h-6 w-6 sm:h-8 sm:w-8" />
+          </span>
+        </Marquee>
+      </section>
 
       {/* Карусель с фотографиями */}
       <section className="py-8 sm:py-10 bg-muted/30">
@@ -368,6 +382,42 @@ export default function AboutUsPage() {
                     <span className="sr-only">Next image</span>
                   </Button>
                 </div>
+              </div>
+            </FadeInUp>
+          </div>
+        </div>
+      </section>
+
+      {/* Видео о том как мы открывались */}
+      <section className="py-8 sm:py-8 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <FadeInUp>
+              <div className="text-center mb-16">
+                <h2 className="text-3xl sm:text-4xl font-bold mb-6">
+                  Посмотрите видео о том, как мы открывались
+                </h2>
+                <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                  Узнайте больше о нашем пути и том, как создавался TOPICONIC
+                </p>
+              </div>
+            </FadeInUp>
+
+            <FadeInUp delay={0.2}>
+              <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl">
+                <iframe
+                  src="https://www.youtube.com/embed/rqBXRBTpyJ0?si=XXuMCtRUrMryaH_i"
+                  title="Как мы открывались - TOPICONIC"
+                  className="absolute inset-0 w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                />
+              </div>
+            </FadeInUp>
+
+            <FadeInUp delay={0.4}>
+              <div className="text-center mt-8">
               </div>
             </FadeInUp>
           </div>

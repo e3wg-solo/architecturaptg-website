@@ -25,55 +25,55 @@ const services: Service[] = [
     id: 'aesthetic-cosmetology',
     name: 'Косметология эстетическая',
     description: 'Профессиональный уход за кожей лица и тела',
-    image: "https://i.pinimg.com/736x/29/8b/37/298b377920eb2d1172dc0113e56d3692.jpg"
+    image: "/services/aesthetic-cosmetology.webp"
   },
   {
     id: 'hardware-cosmetology',
     name: 'Косметология аппаратная',
     description: 'Процедуры с использованием новейших технологий',
-    image: "https://i.pinimg.com/1200x/35/be/de/35bede0e01b7bcd81ecb8f753d36ebad.jpg"
+    image: "/services/hardware-cosmetology.webp"
   },
   {
     id: 'hairdressing',
     name: 'Парикмахерский зал',
     description: 'Стрижки, окрашивание, укладки любой сложности',
-    image: "https://i.pinimg.com/736x/3a/61/62/3a61623c2dbe0571cbdb65a906636f8d.jpg"
+    image: "/services/hairdressing.webp"
   },
   {
     id: 'nail-service',
     name: 'Ногтевой сервис',
     description: 'Маникюр, педикюр, наращивание и дизайн ногтей',
-    image: "https://i.pinimg.com/736x/5c/45/d0/5c45d0c71ea22fa7ec30da2d8454b522.jpg"
+    image: "/services/nail-service.webp"
   },
   {
     id: 'massage',
     name: 'Массаж',
     description: 'Релаксирующий и лечебный массаж всего тела',
-    image: "https://i.pinimg.com/736x/43/84/0c/43840ce0cdc463d46ed154e99cce376d.jpg"
+    image: "/services/massage.webp"
   },
   {
     id: 'eyebrows-lashes',
     name: 'Брови и ресницы',
     description: 'Коррекция бровей, наращивание ресниц, ламинирование',
-    image: "https://i.pinimg.com/1200x/44/b3/ee/44b3ee2af4bf7d03ec3c79a48bbfbd1b.jpg"
+    image: "/services/eyebrows-lashes.webp"
   },
   {
     id: 'tattoo',
     name: 'Татуаж',
     description: 'Перманентный макияж бровей, губ, век',
-    image: "https://i.pinimg.com/736x/1a/d7/a7/1ad7a7be3a851bdc1193b8a4de47d03c.jpg"
+    image: "/services/tattoo.webp"
   },
   {
     id: 'makeup',
     name: 'Макияж',
     description: 'Дневной, вечерний, свадебный макияж',
-    image: "https://i.ibb.co/ZpWdnr19/185d9715e6285738e5cae9d3ce64034d.jpg"
+    image: "/services/makeup.webp"
   },
   {
     id: 'solarium',
     name: 'Солярий',
     description: 'Безопасный загар в комфортных условиях',
-    image: "https://i.ibb.co/dJwTC4dg/31ad9d623fb5650f7d657aba2cec1c4f.jpg"
+    image: "/services/solarium.webp"
   }
 ];
 

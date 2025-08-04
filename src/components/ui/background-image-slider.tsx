@@ -6,9 +6,9 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const images = [
   // Женский портрет
-  "https://i.ibb.co/ZpjyLHNw/20250802-1449-Intense-Charisma-simple-compose-01k1n9sp49fcx9de4swgs614bf.png",
+  "/backgrounds/hero-1.webp",
   // Мужской портрет
-  "https://i.ibb.co/K4x5wv3/20250802-1516-Elegant-Black-and-White-Portrait-simple-compose-01k1nbc5fve0dagmvdeeffzr93.png"
+  "/backgrounds/hero-2.webp"
 ];
 
 export function BackgroundImageSlider() {

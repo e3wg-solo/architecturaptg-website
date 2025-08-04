@@ -87,8 +87,15 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-4">
         <div className="flex h-10 items-center justify-between">
 
-          {/* Empty space for mobile - pushes burger to the right */}
-          <div className="md:hidden flex-1"></div>
+          {/* Записаться Button - Mobile Left */}
+          <div className="md:hidden flex-1">
+            <button 
+              className="inline-flex items-center px-3 py-1.5 bg-brand-primary text-white text-xs font-medium rounded-md hover:bg-brand-primary/90 transition-colors cursor-pointer"
+              onClick={() => window.open('https://wa.me/7993777559', '_blank')}
+            >
+              Записаться
+            </button>
+          </div>
 
           {/* Navigation - Desktop */}
           <nav className="hidden md:flex items-center space-x-14 text-m font-medium">
@@ -125,7 +132,7 @@ export function Header() {
           </nav>
 
           {/* Right side - Actions */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-3">
             {/* Записаться Button - Desktop */}
             <button 
               className="hidden md:inline-flex items-center px-4 py-2 bg-brand-primary text-white text-sm font-medium rounded-lg hover:bg-brand-primary/90 transition-colors cursor-pointer"
@@ -133,7 +140,8 @@ export function Header() {
             >
               Записаться
             </button>
-            
+
+
             {/* Mobile Navigation Button */}
             <motion.button 
               className="md:hidden p-2 rounded-md hover:bg-accent hover:text-accent-foreground relative cursor-pointer"
@@ -255,17 +263,7 @@ export function Header() {
                     Контакты
                   </Link>
                 </motion.div>
-                <motion.div variants={itemVariants}>
-                  <button 
-                    className="w-full text-left px-2 py-2 text-sm font-medium bg-brand-primary text-white rounded-md hover:bg-brand-primary/90 transition-colors cursor-pointer"
-                    onClick={() => {
-                      setIsMobileMenuOpen(false);
-                      window.open('https://wa.me/79937775559', '_blank');
-                    }}
-                  >
-                    Записаться
-                  </button>
-                </motion.div>
+
               </motion.nav>
             </motion.div>
           )}
