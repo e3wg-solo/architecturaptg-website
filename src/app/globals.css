@@ -679,6 +679,28 @@ html {
   animation: accordion-up 0.15s ease-in;
 }
 
+/* Варианты скорости для разных нужд */
+.accordion-slow .animate-accordion-down {
+  animation: accordion-down 10.9s ease-out;
+}
+
+.accordion-slow .animate-accordion-up {
+  animation: accordion-up 5.9s ease-in;
+}
+
+.accordion-fast .animate-accordion-down {
+  animation: accordion-down 0.1s ease-out;
+}
+
+.accordion-fast .animate-accordion-up {
+  animation: accordion-up 0.08s ease-in;
+}
+
+.accordion-instant .animate-accordion-down,
+.accordion-instant .animate-accordion-up {
+  animation: none !important;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

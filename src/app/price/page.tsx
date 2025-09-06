@@ -119,6 +119,7 @@ function PricePageContent() {
                     collapsible 
                     value={openAccordion}
                     onValueChange={handleAccordionChange}
+                    className="accordion-slow"
                   >
                     {Object.entries(serviceNames).map(([key, name]) => (
                       <AccordionItem key={key} value={key}>
