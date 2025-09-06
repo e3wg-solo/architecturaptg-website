@@ -22,58 +22,64 @@ interface Service {
 
 const services: Service[] = [
   {
-    id: 'aesthetic-cosmetology',
-    name: 'Косметология эстетическая',
-    description: 'Профессиональный уход за кожей лица и тела',
-    image: "/services/aesthetic-cosmetology.webp"
+    id: 'cosmetology',
+    name: 'Косметология',
+    description: 'Увеличение губ, ботулинотерапия, биоревитализация, коллагенотерапия',
+    image: "/services/cosmetology.webp"
   },
   {
-    id: 'hardware-cosmetology',
-    name: 'Косметология аппаратная',
-    description: 'Процедуры с использованием новейших технологий',
-    image: "/services/hardware-cosmetology.webp"
+    id: 'body-massage',
+    name: 'Ручные массажи по телу',
+    description: 'Классический, лимфодренажный, HIRO, расслабляющий массаж',
+    image: "/services/body-massage.webp"
   },
   {
-    id: 'hairdressing',
-    name: 'Парикмахерский зал',
-    description: 'Стрижки, окрашивание, укладки любой сложности',
-    image: "/services/hairdressing.webp"
+    id: 'spa',
+    name: 'SPA-программы',
+    description: 'Кедровая бочка, пилинг, обёртывание, комплексные программы',
+    image: "/services/spa.webp"
   },
   {
-    id: 'nail-service',
-    name: 'Ногтевой сервис',
-    description: 'Маникюр, педикюр, наращивание и дизайн ногтей',
-    image: "/services/nail-service.webp"
+    id: 'figure-correction',
+    name: 'Ручная коррекция фигуры',
+    description: 'Антицеллюлитный массаж, медовая выкатка, коррекция проблемных зон',
+    image: "/services/figure-correction.webp"
   },
   {
-    id: 'massage',
-    name: 'Массаж',
-    description: 'Релаксирующий и лечебный массаж всего тела',
-    image: "/services/massage.webp"
+    id: 'face-massage',
+    name: 'Массажи лица',
+    description: 'Скульптурный, буккальный, миофасциальный массаж лица',
+    image: "/services/face-massage.webp"
   },
   {
-    id: 'eyebrows-lashes',
-    name: 'Брови и ресницы',
-    description: 'Коррекция бровей, наращивание ресниц, ламинирование',
-    image: "/services/eyebrows-lashes.webp"
+    id: 'apparatus-face',
+    name: 'Аппаратные процедуры для лица',
+    description: 'Аквапилинг, RF-лифтинг, микротоки, карбокситерапия',
+    image: "/services/apparatus-face.webp"
   },
   {
-    id: 'tattoo',
-    name: 'Татуаж',
-    description: 'Перманентный макияж бровей, губ, век',
-    image: "/services/tattoo.webp"
+    id: 'manicure-pedicure',
+    name: 'Маникюр и педикюр',
+    description: 'Гигиенический уход, покрытие, наращивание, дизайн ногтей',
+    image: "/services/manicure-pedicure.webp"
   },
   {
-    id: 'makeup',
-    name: 'Макияж',
-    description: 'Дневной, вечерний, свадебный макияж',
-    image: "/services/makeup.webp"
+    id: 'apparatus-body',
+    name: 'Аппаратные процедуры для тела',
+    description: 'Кавитация, RF-лифтинг, эндосфера, прессотерапия',
+    image: "/services/apparatus-body.webp"
   },
   {
-    id: 'solarium',
-    name: 'Солярий',
-    description: 'Безопасный загар в комфортных условиях',
-    image: "/services/solarium.webp"
+    id: 'men-massage',
+    name: 'Массажи для мужчин',
+    description: 'Массаж лица и тела, микротоки, альгинатные маски',
+    image: "/services/men-massage.webp"
+  },
+  {
+    id: 'figure-correction-courses',
+    name: 'Курсы коррекции фигуры',
+    description: 'TOP-MASTER, PREMIUM, STANDART программы коррекции всех проблемных зон',
+    image: "/services/figure-correction-courses.webp"
   }
 ];
 
@@ -101,11 +107,11 @@ export function ServicesGrid() {
     <div className="py-20 sm:py-32">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-5xl font-bold mb-4">
+          <h2 className="text-3xl sm:text-5xl font-bold mb-4 text-gold-gradient">
             Наши услуги
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Красота, уход и здоровье — в одном месте, с заботой о каждой детали
+          <p className="text-xl text-white/80 max-w-2xl mx-auto">
+            Косметология, массажи, SPA-программы, аппаратные процедуры, маникюр и педикюр — полный спектр услуг красоты и здоровья
           </p>
         </div>
         
@@ -125,7 +131,8 @@ export function ServicesGrid() {
               {services.map((service) => (
                 <CarouselItem key={service.id} className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4 transform-gpu">
                   <Card 
-                    className="group relative overflow-hidden border-0 aspect-square bg-black/10 mx-2 sm:mx-0"
+                    className="group relative overflow-hidden border-0 aspect-square mx-2 sm:mx-0"
+                    style={{backgroundColor: 'rgba(99,99,99,0.8)'}}
                   >
                     {/* Background Image */}
                     {service.image && (
@@ -138,17 +145,17 @@ export function ServicesGrid() {
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           priority={true}
                         />
-                        <div className="absolute inset-0 bg-black/60" />
+                        <div className="absolute inset-0" style={{backgroundColor: 'rgba(130, 130, 130, 0.51)'}} />
                       </div>
                     )}
                     
                     <CardContent className="relative flex flex-col justify-between h-full p-6 sm:p-8 z-10 transform-gpu">
                       <div className="text-center space-y-3 sm:space-y-4">
-                        <h3 className="text-3xl sm:text-2xl font-bold text-white">
+                        <h3 className="text-3xl sm:text-2xl font-bold text-gold-gradient">
                           {service.name}
                         </h3>
                         
-                        <p className="text-lg sm:text-base leading-relaxed text-white/70">
+                        <p className="text-lg sm:text-base leading-relaxed text-white/90">
                           {service.description}
                         </p>
                       </div>

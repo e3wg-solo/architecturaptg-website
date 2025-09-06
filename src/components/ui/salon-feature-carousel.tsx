@@ -12,22 +12,37 @@ import Autoplay from 'embla-carousel-autoplay';
 import { EmblaCarouselType } from 'embla-carousel';
 import Image from 'next/image';
 
+interface Service {
+  image?: string;
+  video?: string;
+  title: string;
+}
+
 function SalonFeatureCarousel() {
   const services = [
     {
-      image: "https://i.pinimg.com/736x/eb/27/05/eb2705ffad5ea75d2ff7d62c80aa20d3.jpg"
+      image: "/works/primer-arch.webp",
+      title: "Салон Архитектура Пятигорск"
     },
     {
-      image: "https://i.pinimg.com/736x/ea/60/af/ea60af6f60d32dbae683d4be55cdff2a.jpg"
+      image: "/works/manicure.webp",
+      title: "Маникюр Пятигорск лак"
     },
     {
-      image: "https://i.pinimg.com/1200x/02/da/5d/02da5d19c40e0a6fca50803696cfb4a9.jpg"
+      image: "/works/pedicure-2.webp",
+      title: "Педикюр Пятигорск"
     },
     {
-      image: "https://i.pinimg.com/736x/3f/08/8c/3f088c11e1e1236174b257ced44fedeb.jpg"
+      image: "/works/pedicure-1.webp",
+      title: "Педикюр Пятигорск лак"
     },
     {
-      image: "https://i.pinimg.com/736x/11/c3/aa/11c3aacc833d7448dc82c20cf451292b.jpg"
+      video: "https://vkvideo.ru/video_ext.php?oid=-75903376&id=456239018&hd=1&autoplay=1",
+      title: "Наши работы в видео"
+    },
+    {
+      video: "https://vkvideo.ru/video_ext.php?oid=-75903376&id=456239017&hd=2&autoplay=1",
+      title: "Процесс работы мастера"
     }
   ];
 
@@ -81,18 +96,33 @@ function SalonFeatureCarousel() {
               <CarouselContent className="-ml-2 md:-ml-4">
                 {services.map((service, index) => (
                   <CarouselItem key={index} className="pl-2 md:pl-4">
-                    <div className="relative flex rounded-3xl aspect-square bg-muted items-center justify-center border border-border/60 hover:border-primary/20 transition-colors mx-2 sm:mx-0 overflow-hidden">
-                      {service.image ? (
+                    <div className="relative flex rounded-3xl aspect-square items-center justify-center border border-border/60 hover:border-primary/20 transition-colors mx-2 sm:mx-0 overflow-hidden" style={{backgroundColor: 'rgba(250,218,221,0.6)'}}>
+                      {service.video ? (
+                        <iframe
+                          src={service.video}
+                          width="100%"
+                          height="100%"
+                          style={{ 
+                            backgroundColor: '#000',
+                            borderRadius: '24px',
+                            border: 'none'
+                          }}
+                          allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"
+                          allowFullScreen
+                          title={service.title || `Видео ${index + 1}`}
+                          className="absolute inset-0 w-full h-full object-cover"
+                        />
+                      ) : service.image ? (
                         <Image
                           src={service.image}
-                          alt={`Работа ${index + 1}`}
+                          alt={service.title || `Работа ${index + 1}`}
                           fill
                           className="object-cover"
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           priority={index < 2}
                         />
                       ) : (
-                        <div className="h-full w-full bg-muted flex items-center justify-center">
+                        <div className="h-full w-full flex items-center justify-center" style={{backgroundColor: 'rgba(250,218,221,0.6)'}}>
                           <span className="text-muted-foreground">Изображение {index + 1}</span>
                         </div>
                       )}

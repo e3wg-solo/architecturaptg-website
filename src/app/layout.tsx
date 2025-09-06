@@ -16,57 +16,57 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "Салон красоты Topiconic - Косметология, парикмахерские услуги, маникюр в Боброво",
-    template: "%s | Салон красоты Topiconic"
+    default: "Салон эпиляции и массажа и маникюра Архитектура - Эпиляция, массаж, маникюр в Пятигорске",
+    template: "%s | Салон Архитектура"
   },
-  description: "Салон красоты Topiconic в Боброво: косметология, парикмахерские услуги, маникюр, педикюр, массаж, татуаж, макияж. Профессиональные мастера, качественные материалы. Запись: +7 (993) 777-55-59",
+  description: "Салон эпиляции и массажа и маникюра Архитектура в Пятигорске: профессиональная эпиляция, расслабляющий массаж, качественный маникюр. Опытные мастера, современное оборудование. Запись: +7 (928) 716-70-38",
   keywords: [
-    "салон красоты",
-    "косметология",
-    "парикмахерские услуги", 
+    "салон эпиляции",
+    "массаж",
+    "маникюр",
+    "эпиляция",
+    "депиляция",
+    "лазерная эпиляция",
+    "восковая эпиляция",
+    "расслабляющий массаж",
+    "лечебный массаж",
     "маникюр",
     "педикюр",
-    "массаж",
-    "татуаж",
-    "макияж",
-    "солярий",
-    "Боброво",
-    "Крымская улица",
-    "Topiconic",
-    "салон красоты Боброво",
-    "косметолог",
-    "парикмахер",
-    "мастер маникюра",
+    "Пятигорск",
+    "ул. Розы Люксембург",
+    "Архитектура",
+    "салон эпиляции Пятигорск",
     "массажист",
-    "визажист"
+    "мастер маникюра",
+    "эпиляция Пятигорск"
   ],
-  authors: [{ name: "Салон красоты Topiconic" }],
-  creator: "Салон красоты Topiconic",
-  publisher: "Салон красоты Topiconic",
-  metadataBase: new URL(process.env.NODE_ENV === 'production' ? 'https://topiconic.ru' : 'http://localhost:3000'),
+  authors: [{ name: "Салон эпиляции и массажа и маникюра Архитектура" }],
+  creator: "Салон эпиляции и массажа и маникюра Архитектура",
+  publisher: "Салон эпиляции и массажа и маникюра Архитектура",
+  metadataBase: new URL(process.env.NODE_ENV === 'production' ? 'https://architecturaptg.ru' : 'http://localhost:3000'),
   alternates: {
-    canonical: process.env.NODE_ENV === 'production' ? 'https://topiconic.ru' : 'http://localhost:3000',
+    canonical: process.env.NODE_ENV === 'production' ? 'https://architecturaptg.ru' : 'http://localhost:3000',
   },
   openGraph: {
     type: "website",
     locale: "ru_RU",
-    url: process.env.NODE_ENV === 'production' ? 'https://topiconic.ru' : 'http://localhost:3000',
-    title: "Салон красоты Topiconic - Косметология, парикмахерские услуги, маникюр в Боброво",
-    description: "Салон красоты Topiconic в Боброво: косметология, парикмахерские услуги, маникюр, педикюр, массаж, татуаж, макияж. Профессиональные мастера, качественные материалы.",
-    siteName: "Салон красоты Topiconic",
+    url: process.env.NODE_ENV === 'production' ? 'https://architecturaptg.ru' : 'http://localhost:3000',
+    title: "Салон эпиляции и массажа и маникюра Архитектура - Эпиляция, массаж, маникюр в Пятигорске",
+    description: "Салон эпиляции и массажа и маникюра Архитектура в Пятигорске: профессиональная эпиляция, расслабляющий массаж, качественный маникюр. Опытные мастера, современное оборудование.",
+    siteName: "Салон Архитектура",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Салон красоты Topiconic - Косметология, парикмахерские услуги, маникюр в Боброво",
+        alt: "Салон эпиляции и массажа и маникюра Архитектура - Эпиляция, массаж, маникюр в Пятигорске",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Салон красоты Topiconic - Косметология, парикмахерские услуги, маникюр в Боброво",
-    description: "Салон красоты Topiconic в Боброво: косметология, парикмахерские услуги, маникюр, педикюр, массаж, татуаж, макияж.",
+    title: "Салон эпиляции и массажа и маникюра Архитектура - Эпиляция, массаж, маникюр в Пятигорске",
+    description: "Салон эпиляции и массажа и маникюра Архитектура в Пятигорске: профессиональная эпиляция, расслабляющий массаж, качественный маникюр.",
     images: ["/og-image.jpg"],
   },
   robots: {
@@ -87,23 +87,23 @@ export const metadata: Metadata = {
   category: "beauty",
   classification: "Beauty Salon",
   other: {
-    "geo.region": "RU-MOS",
-    "geo.placename": "Боброво",
-    "geo.position": "55.123456;37.123456", // Замените на реальные координаты
-    "ICBM": "55.123456, 37.123456", // Замените на реальные координаты
-    "DC.title": "Салон красоты Topiconic",
-    "DC.creator": "Салон красоты Topiconic",
-    "DC.subject": "Салон красоты, косметология, парикмахерские услуги",
-    "DC.description": "Салон красоты Topiconic в Боброво: косметология, парикмахерские услуги, маникюр, педикюр, массаж, татуаж, макияж",
-    "DC.publisher": "Салон красоты Topiconic",
-    "DC.contributor": "Салон красоты Topiconic",
+    "geo.region": "RU-STA",
+    "geo.placename": "Пятигорск",
+    "geo.position": "44.0486;43.0594",
+    "ICBM": "44.0486, 43.0594",
+    "DC.title": "Салон эпиляции и массажа и маникюра Архитектура",
+    "DC.creator": "Салон эпиляции и массажа и маникюра Архитектура",
+    "DC.subject": "Салон эпиляции, массаж, маникюр, депиляция",
+    "DC.description": "Салон эпиляции и массажа и маникюра Архитектура в Пятигорске: профессиональная эпиляция, расслабляющий массаж, качественный маникюр",
+    "DC.publisher": "Салон эпиляции и массажа и маникюра Архитектура",
+    "DC.contributor": "Салон эпиляции и массажа и маникюра Архитектура",
     "DC.date": "2024",
     "DC.type": "Service",
     "DC.format": "text/html",
-    "DC.identifier": "https://topiconic.ru",
+                "DC.identifier": "https://architecturaptg.ru",
     "DC.language": "ru",
-    "DC.coverage": "Боброво, Московская область",
-    "DC.rights": "Салон красоты Topiconic",
+    "DC.coverage": "Пятигорск, Ставропольский край",
+    "DC.rights": "Салон эпиляции и массажа и маникюра Архитектура",
   },
 };
 
@@ -113,9 +113,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru" className="dark">
+    <html lang="ru" data-theme="light">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#AC934A" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="format-detection" content="telephone=yes" />
+        
         {/* Local SF Pro Display Font Preloads */}
         <link rel="preload" href="/fonts/SF-Pro-Display-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/SF-Pro-Display-Medium.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
@@ -129,46 +134,45 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "BeautySalon",
-              "name": "Салон красоты Topiconic",
-              "description": "Салон красоты Topiconic в Боброво: косметология, парикмахерские услуги, маникюр, педикюр, массаж, татуаж, макияж",
-              "url": "https://topiconic.ru",
-              "telephone": "+79937775559",
+              "name": "Салон эпиляции и массажа и маникюра Архитектура",
+              "description": "Салон эпиляции и массажа и маникюра Архитектура в Пятигорске: профессиональная эпиляция, расслабляющий массаж, качественный маникюр",
+              "url": "https://architecturaptg.ru",
+              "telephone": "+79287167038",
               "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "Крымская ул., 19, корп. 1",
-                "addressLocality": "Боброво",
-                "addressRegion": "Московская область",
-                "postalCode": "142060",
+                "streetAddress": "ул. Розы Люксембург, 72А",
+                "addressLocality": "Пятигорск",
+                "addressRegion": "Ставропольский край",
+                "postalCode": "357500",
                 "addressCountry": "RU"
               },
               "geo": {
                 "@type": "GeoCoordinates",
-                "latitude": 55.123456, // Замените на реальные координаты
-                "longitude": 37.123456 // Замените на реальные координаты
+                "latitude": 44.0486,
+                "longitude": 43.0594
               },
               "openingHours": [
-                "Mo-Fr 09:00-20:00",
-                "Sa-Su 10:00-19:00"
+                "Mo-Su 08:00-20:00"
               ],
               "priceRange": "₽₽",
               "currenciesAccepted": "RUB",
               "paymentAccepted": "Cash, Credit Card",
               "hasOfferCatalog": {
                 "@type": "OfferCatalog",
-                "name": "Услуги салона красоты",
+                "name": "Услуги салона Архитектура",
                 "itemListElement": [
                   {
                     "@type": "Offer",
                     "itemOffered": {
                       "@type": "Service",
-                      "name": "Косметология"
+                      "name": "Эпиляция"
                     }
                   },
                   {
                     "@type": "Offer", 
                     "itemOffered": {
                       "@type": "Service",
-                      "name": "Парикмахерские услуги"
+                      "name": "Массаж"
                     }
                   },
                   {
@@ -182,21 +186,7 @@ export default function RootLayout({
                     "@type": "Offer",
                     "itemOffered": {
                       "@type": "Service",
-                      "name": "Массаж"
-                    }
-                  },
-                  {
-                    "@type": "Offer",
-                    "itemOffered": {
-                      "@type": "Service",
-                      "name": "Татуаж"
-                    }
-                  },
-                  {
-                    "@type": "Offer",
-                    "itemOffered": {
-                      "@type": "Service",
-                      "name": "Макияж"
+                      "name": "Педикюр"
                     }
                   }
                 ]
@@ -207,18 +197,19 @@ export default function RootLayout({
                 "reviewCount": "127"
               },
               "image": [
-                "https://topiconic.ru/salon-exterior.jpg",
-                "https://topiconic.ru/salon-interior.jpg"
+                "https://architecturaptg.ru/studio-exterior.jpg",
+                "https://architecturaptg.ru/studio-interior.jpg"
               ],
               "sameAs": [
-                "https://vk.com/topiconic",
-                "https://instagram.com/topiconic"
+                "https://vk.com/arhitektura_beauty",
+                "https://instagram.com/arhitektura_beauty"
               ]
             })
           }}
         />
         
-        {/* Yandex.Metrika - исправленная версия */}
+        {/* Yandex.Metrika - закомментировано до получения токена */}
+        {/* 
         <Script
           id="yandex-metrika"
           strategy="afterInteractive"
@@ -242,6 +233,7 @@ export default function RootLayout({
             `
           }}
         />
+        */}
         
 
       </head>
@@ -261,7 +253,8 @@ export default function RootLayout({
           <Footer />
         </div>
         
-        {/* Yandex.Metrika noscript */}
+        {/* Yandex.Metrika noscript - закомментировано до получения токена */}
+        {/* 
         <noscript>
           <div style={{position:'absolute', left:'-9999px'}}>
             <Image 
@@ -273,6 +266,7 @@ export default function RootLayout({
             />
           </div>
         </noscript>
+        */}
       </body>
     </html>
   );

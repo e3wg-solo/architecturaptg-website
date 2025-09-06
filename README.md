@@ -1,166 +1,76 @@
-# Topiconic
+# Студия эстетики лица и тела «Архитектура»
 
-Professional website template built with Next.js, TypeScript, Tailwind CSS, and modern web technologies.
+Современный сайт студии красоты "Архитектура" в Пятигорске, созданный с использованием Next.js 15, TypeScript и Tailwind CSS.
 
-## 🚀 Features
+## О проекте
 
-- **Next.js 15** with App Router
-- **TypeScript** with strict mode for type safety
-- **Tailwind CSS v4** with custom design system
-- **shadcn/ui** component library
-- **Framer Motion** for smooth animations
-- **Dark/Light theme** with system preference support
-- **Responsive design** for all devices
-- **Professional structure** ready for development
+Студия эстетики лица и тела «Архитектура» предлагает полный спектр услуг красоты и здоровья:
+- **Косметология** - процедуры для лица, омоложение, уходы
+- **Массаж** - ручные массажи по телу, лица, для мужчин
+- **Маникюр/педикюр** - профессиональный уход за ногтями
+- **Аппаратные процедуры** - для лица и тела
+- **Коррекция фигуры** - ручная и аппаратная коррекция
+- **SPA-программы** - комплексные оздоровительные процедуры
 
-## 📁 Project Structure
+## Контакты
+
+- **Адрес**: г. Пятигорск, ул. Розы Люксембург, 72А
+- **Телефон**: +7 (928) 716-70-38
+- **WhatsApp**: +7 (928) 716-70-38
+- **Время работы**: Пн-Вс: 08:00 - 20:00
+- **Сайт**: https://architecturaptg.ru
+
+## Технологии
+
+- **Next.js 15** - React фреймворк
+- **TypeScript** - типизированный JavaScript
+- **Tailwind CSS** - утилитарный CSS фреймворк
+- **Framer Motion** - анимации
+- **Lucide React** - иконки
+- **Radix UI** - компоненты интерфейса
+
+## Особенности
+
+- ✅ Адаптивный дизайн
+- ✅ SEO оптимизация
+- ✅ Быстрая загрузка
+- ✅ Современный UI/UX
+- ✅ Анимации и переходы
+- ✅ Структурированные данные для поисковиков
+
+## Установка и запуск
+
+```bash
+# Установка зависимостей
+npm install
+
+# Запуск в режиме разработки
+npm run dev
+
+# Сборка для продакшена
+npm run build
+
+# Запуск продакшен версии
+npm start
+```
+
+## Структура проекта
 
 ```
-topiconic/
-├── src/
-│   ├── app/                    # Next.js App Router pages
-│   │   ├── components/         # Component showcase page
-│   │   ├── globals.css         # Global styles
-│   │   ├── layout.tsx          # Root layout
-│   │   └── page.tsx            # Homepage
-│   ├── components/             # Reusable components
-│   │   ├── animations/         # Animation components
-│   │   ├── layout/             # Header, Footer
-│   │   ├── theme/              # Theme system
-│   │   └── ui/                 # shadcn/ui components
-│   ├── lib/                    # Utility functions
-│   └── types/                  # TypeScript type definitions
-├── public/                     # Static assets
-└── components.json             # shadcn/ui configuration
+src/
+├── app/                 # App Router (Next.js 14)
+│   ├── about/          # Страница "О нас"
+│   ├── price/          # Страница прайса
+│   ├── privacy-policy/ # Политика конфиденциальности
+│   └── ...
+├── components/          # React компоненты
+│   ├── layout/         # Компоненты макета
+│   ├── ui/             # UI компоненты
+│   └── animations/     # Анимации
+├── lib/                # Утилиты и данные
+└── styles/             # Стили
 ```
 
-## 🛠 Available Components
+## Лицензия
 
-### UI Components (shadcn/ui)
-- **Buttons** - Various styles and sizes
-- **Cards** - Flexible content containers
-- **Forms** - Input, Label, Switch components
-- **Navigation** - Dropdown menus
-- **Feedback** - Alerts, Badges
-- **Layout** - Avatar, Separator
-
-### Custom Components
-- **Header** - Responsive navigation with theme toggle
-- **Footer** - Brand info and links
-- **Animations** - Framer Motion powered animations
-- **Theme System** - Dark/light mode with custom colors
-
-### Animation Library
-- `FadeInUp` - Fade in from bottom
-- `FadeInDown` - Fade in from top
-- `ScaleIn` - Scale animation
-- `StaggerContainer` / `StaggerItem` - Staggered animations
-- `AnimatedButton` - Interactive button with hover effects
-
-## 🎨 Design System
-
-### Color Palette
-- **Brand Primary:** `#d7b64c` (Gold)
-- **Brand Secondary:** `#d7b64c` (Gold)
-- **Brand Accent:** `#d7b64c` (Gold)
-- **Success:** `#22c55e` (Green)
-- **Warning:** `#f59e0b` (Amber)
-- **Destructive:** `#ef4444` (Red)
-
-### Typography
-- **Font:** Geist Sans (Primary) / Geist Mono (Code)
-- **Scale:** xs, sm, base, lg, xl, 2xl, 3xl, 4xl, 5xl, 6xl, 7xl
-
-## 🚀 Getting Started
-
-1. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-
-2. **Start development server:**
-   ```bash
-   npm run dev
-   ```
-
-3. **Open browser:**
-   Navigate to [http://localhost:3000](http://localhost:3000)
-
-## 📝 Development
-
-### Adding New Components
-
-1. Use shadcn/ui CLI to add components:
-   ```bash
-   npx shadcn@latest add [component-name]
-   ```
-
-2. Custom components go in `src/components/`
-
-3. Follow the existing naming conventions and structure
-
-### Adding New Pages
-
-1. Create page in `src/app/` directory
-2. Update navigation in `src/components/layout/header.tsx`
-3. Add to footer links if needed
-
-### Styling
-
-- Use Tailwind CSS classes
-- Custom colors available via CSS variables
-- Theme-aware design with dark/light mode support
-
-## 🔧 Tech Stack
-
-- **Framework:** Next.js 15
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS v4
-- **Components:** shadcn/ui + Radix UI
-- **Animations:** Framer Motion
-- **Icons:** Lucide React
-- **Fonts:** Geist (Variable)
-
-## 📄 Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
-
-## 🎯 Ready for Production
-
-This template is production-ready with:
-- ✅ SEO optimized
-- ✅ Performance optimized
-- ✅ Accessibility compliant
-- ✅ Type-safe
-- ✅ Mobile responsive
-- ✅ Clean code structure
-
-## 📦 What's Included
-
-All components and utilities are preserved and ready to use:
-- Complete UI component library
-- Animation system
-- Theme management
-- Layout components
-- Type definitions
-- Build configuration
-
-Start building your next project with this solid foundation!
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+© 2024-2025 Студия эстетики лица и тела «Архитектура». Все права защищены.

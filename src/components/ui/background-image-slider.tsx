@@ -7,8 +7,8 @@ import { motion, AnimatePresence } from "framer-motion";
 const images = [
   // Женский портрет
   "/backgrounds/hero-1.webp",
-  // Мужской портрет
-  "/backgrounds/hero-2.webp"
+  "/backgrounds/hero-2.webp",
+  "/backgrounds/hero-3.webp"
 ];
 
 export function BackgroundImageSlider() {
@@ -39,12 +39,12 @@ export function BackgroundImageSlider() {
             src={images[currentImageIndex]}
             alt={`Beauty salon portrait ${currentImageIndex + 1}`}
             fill
-            className="object-cover"
+            className="object-cover object-bottom"
             priority={currentImageIndex === 0}
             quality={90}
           />
           {/* Темное наложение для улучшения читаемости текста */}
-          <div className="absolute inset-0 bg-black/40" />
+                      <div className="absolute inset-0" style={{backgroundColor: 'rgba(0, 0, 0, 0.08)'}} />
         </motion.div>
       </AnimatePresence>
       

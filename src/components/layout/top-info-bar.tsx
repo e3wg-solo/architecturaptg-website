@@ -15,11 +15,12 @@ export function TopInfoBar() {
           <FadeInDown delay={0.1}>
             <Link href="/" className="flex items-center space-x-3 cursor-pointer transition-transform duration-300">
               <Image
-                src="/logos/topiconic-logo.webp"
-                alt="Topiconic"
-                width={150}
-                height={150}
-                className="h-20 w-auto"
+                src="/logos/archri.webp"
+                alt="Архитектура"
+                width={300}
+                height={300}
+                className="h-20
+                 w-auto"
                 priority
               />
             </Link>
@@ -32,7 +33,7 @@ export function TopInfoBar() {
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-brand-primary flex-shrink-0" />
                 <span className="text-xs sm:text-sm">
-                  Московская область, Боброво, ул. Крымская, д. 19к1, пом.3
+                  г. Пятигорск, ул. Розы Люксембург, 72А
                 </span>
               </div>
 
@@ -40,7 +41,7 @@ export function TopInfoBar() {
               <div className="flex items-center gap-2">
                 <Clock className="h-4 w-4 text-brand-primary flex-shrink-0" />
                 <span className="text-xs sm:text-sm">
-                  Работаем без выходных с 10:00 до 22:00
+                  Работаем без выходных с 08:00 до 20:00
                 </span>
               </div>
             </div>

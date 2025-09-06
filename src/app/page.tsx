@@ -22,6 +22,7 @@ export default function Home() {
               <div className="max-w-4xl mx-auto text-center">
                 <FadeInUp delay={0.2}>
                   <div className="mb-8">
+                    <h1 className="sr-only">Салон эпиляции и массажа и маникюра Архитектура - Эпиляция, массаж, маникюр в Пятигорске</h1>
                   </div>
                 </FadeInUp>
                 
@@ -36,25 +37,25 @@ export default function Home() {
 
       {/* Остальная часть сайта — без фонового слайдера */}
       <FadeInUp delay={0.3}>
-        <section id="services" className="bg-black">
+        <section id="services" style={{backgroundColor: 'rgb(99,99,99)'}}>
           <ServicesGrid />
         </section>
       </FadeInUp>
 
       <ScrollFadeInUp delay={0.3}>
-        <section className="py-0 bg-black">
+        <section className="py-0" style={{backgroundColor: 'rgb(99,99,99)'}}>
           <SalonFeatureCarousel />
         </section>
       </ScrollFadeInUp>
 
       <ScrollFadeInUp delay={0.3}>
-        <section className="py-20 sm:py-32 bg-black">
+        <section className="py-20 sm:py-32" style={{backgroundColor: 'rgb(99,99,99)'}}>
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
-              <h2 className="text-3xl sm:text-5xl font-bold mb-4">
+              <h2 className="text-3xl sm:text-5xl font-bold mb-4 text-gold-gradient">
                 Отзывы наших клиентов
               </h2>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-xl text-white/80 max-w-2xl mx-auto">
                 Нам доверяют: 97% клиентов приходят снова
               </p>
             </div>
@@ -65,7 +66,7 @@ export default function Home() {
       </ScrollFadeInUp>
 
       <ScrollFadeInUp delay={0.4}>
-        <section className="py-0 sm:py-0 bg-black">
+        <section className="py-0 sm:py-0" style={{backgroundColor: 'rgb(99,99,99)'}}>
           <div className="container mx-auto px-4">
             <FaqSectionWithCategories
               title="Часто задаваемые вопросы"
@@ -73,27 +74,19 @@ export default function Home() {
               items={[
                 {
                   question: "Нужно ли записываться заранее или можно прийти без записи?",
-                  answer: "Рекомендуем записываться заранее, чтобы мы могли гарантировать удобное для вас время и подготовить всё необходимое. Но если у нас есть свободное окно — с радостью примем и без записи!",
+                  answer: "Записаться на услуги нашей студии можно предварительно, найдем самые ближайшие окошки у мастеров.",
                 },
                 {
-                  question: "С какими брендами косметики вы работаете?",
-                  answer: "Мы используем только проверенные профессиональные бренды: L’Oréal Professionnel, Estel, OPI, CND, Holy Land, Christina и другие — в зависимости от услуги и типа кожи/волос клиента.",
+                  question: "Есть ли услуг для мужчин?",
+                  answer: "Для мужчин есть услуги ручных массажей, аппаратной и ручной коррекции фигуры, маникюр, педикюр.",
                 },
                 {
                   question: "Есть ли у вас подарочные сертификаты?",
                   answer: "Да! Мы предлагаем подарочные сертификаты на любую сумму или на конкретные процедуры. Это отличный способ порадовать близкого человека заботой и приятными впечатлениями.",
                 },
                 {
-                  question: "Что делать, если я опаздываю или не могу прийти?",
-                  answer: "Пожалуйста, предупредите нас заранее — мы обязательно подберём другое удобное время. При опоздании более чем на 15 минут услуга может быть сокращена или перенесена.",
-                },
-                {
-                  question: "Можно ли прийти с ребёнком или подругой?",
-                  answer: "Конечно! У нас уютная атмосфера, и вы можете спокойно прийти с ребёнком или в компании — рядом можно присесть и подождать. Мы всегда рады создать комфорт не только для клиента, но и для его близких.",
-                },
-                {
-                  question: "Сколько времени длится процедура?",
-                  answer: "Продолжительность зависит от конкретной услуги. Например, стрижка занимает около 40 минут, окрашивание — от 1,5 часов, а маникюр с покрытием — примерно 1 час. Точный тайминг можно уточнить при записи — мы подскажем заранее.",
+                  question: "Есть ли у вас парковка для машин?",
+                  answer: "Да, у нас есть парковка для машин.",
                 }
               ]}
               contactInfo={{
@@ -107,13 +100,13 @@ export default function Home() {
       </ScrollFadeInUp>
 
       <ScrollFadeInUp delay={0.4}>
-        <section id="contacts" className="py-5 sm:py-8 bg-muted/30">
+        <section id="contacts" className="py-5 sm:py-8" style={{backgroundColor: 'rgba(99,99,99, 0.9)'}}>
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
-              <h2 className="text-3xl sm:text-5xl font-bold mb-4">
+              <h2 className="text-3xl sm:text-5xl font-bold mb-4 text-white">
                 Контакты
               </h2>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-xl text-white/80 max-w-2xl mx-auto">
                 Свяжитесь с нами любым удобным способом
               </p>
             </div>
@@ -125,11 +118,11 @@ export default function Home() {
               <div>
                 <div className="h-[526px] rounded-2xl overflow-hidden shadow-lg">
                   <iframe
-                    src="https://yandex.ru/map-widget/v1/?um=constructor%3A14a6281f7bad364d9387bec393adc037e910fb4d021e11cde11b35d96769f6a0&amp;source=constructor"
+                    src="https://yandex.ru/map-widget/v1/?um=constructor%3A345268a1e1dc6bddaa27e74e3a4cd751c394f142d04190bba0c2a034f7cd25d8&amp;source=constructor"
                     width="650"
                     height="750"
                     frameBorder="0"
-                    title="Салон TOPICONIC - Крымская ул., 19, корп. 1, рабочий посёлок Боброво"
+                    title="Салон эпиляции и массажа и маникюра Архитектура - г. Пятигорск, ул. Розы Люксембург, 72А"
                     className="w-full h-full max-w-full"
                   ></iframe>
                 </div>

@@ -11,15 +11,15 @@ export function Footer() {
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
               <Image
-                src="/logos/topiconic-logo.webp"
-                alt="Topiconic"
-                width={100}
-                height={100}
-                className="h-8 w-auto"
+                src="/logos/archri.webp"
+                alt="Архитектура"
+                width={300}
+                height={300}
+                className="h-18 w-auto"
               />
             </div>
             <p className="text-muted-foreground mb-6 max-w-md">
-            Премиальный бьюти & спа салон рядом с вами. Создаём индивидуальные образы и заботимся о вашей красоте с 2020 года.
+            Студия эстетики лица и тела Архитектура - ваш путь к совершенству. Профессиональная косметология, массажи лица и тела, маникюр и педикюр, SPA-программы и коррекция фигуры в Пятигорске.
             </p>
             
             {/* Contact Info */}
@@ -27,21 +27,21 @@ export function Footer() {
               <div className="flex items-center space-x-3">
                 <MapPin className="h-5 w-5 text-brand-primary" />
                 <Link 
-                  href="https://yandex.ru/maps/org/topiconic/219819522730/?ll=37.613785%2C55.529398&z=15" 
+                  href="https://yandex.ru/maps/-/CLEKuY4B" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-brand-primary transition-colors"
                 >
-                  ул.Крымская, 19к1, рабочий посёлок Боброво, Москва
+                  г. Пятигорск, ул. Розы Люксембург, 72А
                 </Link>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-brand-primary" />
                 <Link 
-                  href="tel:+79937775559" 
+                  href="tel:+79287167038" 
                   className="text-muted-foreground hover:text-brand-primary transition-colors"
                 >
-                  +7 (993) 777-55-59
+                  +7 (928) 716-70-38
                 </Link>
               </div>
 
@@ -95,74 +95,82 @@ export function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link 
-                  href="/price?service=aesthetic-cosmetology"
+                  href="/price?service=cosmetology"
                   className="text-muted-foreground hover:text-brand-primary transition-colors"
                 >
-                  Косметология эстетическая
+                  Косметология
                 </Link>
               </li>
               <li>
                 <Link 
-                  href="/price?service=hardware-cosmetology"
+                  href="/price?service=body-massage"
                   className="text-muted-foreground hover:text-brand-primary transition-colors"
                 >
-                  Косметология аппаратная
+                  Массажи тела
                 </Link>
               </li>
               <li>
                 <Link 
-                  href="/price?service=hairdressing"
+                  href="/price?service=face-massage"
                   className="text-muted-foreground hover:text-brand-primary transition-colors"
                 >
-                  Парикмахерский зал
+                  Массажи лица
                 </Link>
               </li>
               <li>
                 <Link 
-                  href="/price?service=nail-service"
+                  href="/price?service=men-massage"
                   className="text-muted-foreground hover:text-brand-primary transition-colors"
                 >
-                  Ногтевой сервис
+                  Массажи для мужчин
                 </Link>
               </li>
               <li>
                 <Link 
-                  href="/price?service=massage"
+                  href="/price?service=apparatus-face"
                   className="text-muted-foreground hover:text-brand-primary transition-colors"
                 >
-                  Массаж
+                  Аппаратные процедуры для лица
                 </Link>
               </li>
               <li>
                 <Link 
-                  href="/price?service=eyebrows-lashes"
+                  href="/price?service=apparatus-body"
                   className="text-muted-foreground hover:text-brand-primary transition-colors"
                 >
-                  Брови и ресницы
+                  Аппаратные процедуры для тела
                 </Link>
               </li>
               <li>
                 <Link 
-                  href="/price?service=tattoo"
+                  href="/price?service=manicure-pedicure"
                   className="text-muted-foreground hover:text-brand-primary transition-colors"
                 >
-                  Татуаж
+                  Маникюр и педикюр
                 </Link>
               </li>
               <li>
                 <Link 
-                  href="/price?service=makeup"
+                  href="/price?service=spa"
                   className="text-muted-foreground hover:text-brand-primary transition-colors"
                 >
-                  Макияж
+                  SPA-программы
                 </Link>
               </li>
               <li>
                 <Link 
-                  href="/price?service=solarium"
+                  href="/price?service=figure-correction"
                   className="text-muted-foreground hover:text-brand-primary transition-colors"
                 >
-                  Солярий
+                  Коррекция фигуры
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/price?service=figure-correction-courses"
+                  className="text-muted-foreground hover:text-brand-primary transition-colors"
+                >
+                  Курсы коррекции фигуры
                 </Link>
               </li>
             </ul>
@@ -173,7 +181,7 @@ export function Footer() {
         <div className="border-t pt-8 mt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-sm text-muted-foreground">
-              © 2020-2025 TOPICONIC бьюти & спа. Все права защищены.
+              © 2024-2025 Архитектура. Студия эстетики лица и тела. Все права защищены.
             </div>
             <div className="flex items-center space-x-6 text-sm">
               <Link 

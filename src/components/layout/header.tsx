@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
+import { Button } from "@/components/ui/button";
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -80,8 +81,7 @@ export function Header() {
 
   return (
     <header
-      className={`sticky z-40 rounded-3xl border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-all duration-300 mx-0 sm:mx-6 lg:mx-24 ${
-        isClient && scrolled ? "top-0" : "top-20"
+    className={`sticky z-40 rounded-3xl border-b bg-background/85 backdrop-blur supports-[backdrop-filter]:bg-background/70 shadow-lg transition-all duration-300 mx-0 sm:mx-6 lg:mx-24 ${        isClient && scrolled ? "top-0" : "top-20"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-4">
@@ -89,12 +89,13 @@ export function Header() {
 
           {/* Записаться Button - Mobile Left */}
           <div className="md:hidden flex-1">
-            <button 
-              className="inline-flex items-center px-3 py-1.5 bg-brand-primary text-white text-xs font-medium rounded-md hover:bg-brand-primary/90 transition-colors cursor-pointer"
-              onClick={() => window.open('https://wa.me/7993777559', '_blank')}
+            <Button 
+              size="sm"
+              className="text-xs px-3 py-1.5 h-auto"
+              onClick={() => window.open('https://wa.me/79287167038', '_blank')}
             >
               Записаться
-            </button>
+            </Button>
           </div>
 
           {/* Navigation - Desktop */}
@@ -134,12 +135,12 @@ export function Header() {
           {/* Right side - Actions */}
           <div className="flex items-center space-x-3">
             {/* Записаться Button - Desktop */}
-            <button 
-              className="hidden md:inline-flex items-center px-4 py-2 bg-brand-primary text-white text-sm font-medium rounded-lg hover:bg-brand-primary/90 transition-colors cursor-pointer"
-              onClick={() => window.open('https://wa.me/79937775559', '_blank')}
+            <Button 
+              className="hidden md:inline-flex text-sm px-4 py-2"
+              onClick={() => window.open('https://wa.me/79287167038', '_blank')}
             >
               Записаться
-            </button>
+            </Button>
 
 
             {/* Mobile Navigation Button */}

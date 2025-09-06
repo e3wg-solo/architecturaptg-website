@@ -2,15 +2,15 @@
 
 export function ContactButtons() {
   const handleAddressClick = () => {
-    window.open('https://yandex.ru/maps/?from=mapframe&ll=37.613785%2C55.529398&mode=routes&rtext=~55.529398%2C37.613785&rtt=mt&ruri=~ymapsbm1%3A%2F%2Forg%3Foid%3D219819522730&z=14.03', '_blank');
+    window.open('https://yandex.ru/maps/11067/pyatigorsk/?azimuth=0.01747889515220444&ll=43.066689%2C44.036271&mode=routes&rtext=~44.036309%2C43.068747&rtt=mt&ruri=~ymapsbm1%3A%2F%2Forg%3Foid%3D162391716025&tilt=0.006794443188677779&utm_source=share&z=17');
   };
 
   const handlePhoneClick = () => {
-    window.open('tel:+79937775559', '_self');
+    window.open('tel:+79287167038', '_self');
   };
 
   const handleWhatsAppClick = () => {
-    window.open('https://wa.me/79937775559', '_blank');
+    window.open('https://wa.me/79287167038', '_blank');
   };
 
 
@@ -29,7 +29,7 @@ export function ContactButtons() {
         <div className="flex-1">
           <h4 className="font-medium text-lg mb-0">Адрес</h4>
           <p className="text-muted-foreground">
-            Крымская ул., 19к1, посёлок Боброво
+            г. Пятигорск, ул. Розы Люксембург, 72А
           </p>
         </div>
       </button>
@@ -46,7 +46,7 @@ export function ContactButtons() {
         <div className="flex-1">
           <h4 className="font-medium text-lg mb-0">Телефон</h4>
           <p className="text-muted-foreground">
-            +7 (993) 777-55-59
+            +7 (928) 716-70-38
           </p>
         </div>
       </button>
@@ -63,7 +63,7 @@ export function ContactButtons() {
         <div className="flex-1">
           <h4 className="font-medium text-lg mb-0">WhatsApp</h4>
           <p className="text-muted-foreground">
-            +7 (993) 777-55-59
+            +7 (928) 716-70-38
           </p>
         </div>
       </button>
@@ -80,7 +80,7 @@ export function ContactButtons() {
         <div className="flex-1">
           <h4 className="font-medium text-lg mb-0">Время работы</h4>
           <p className="text-muted-foreground">
-            Пн-Вс: 10:00 - 22:00
+            Пн-Вс: 10:00 - 19:00
           </p>
         </div>
       </button>
@@ -94,7 +94,7 @@ export function ContactButtons() {
           </svg>
         </div>
         <div className="flex-1">
-          <h4 className="font-medium text-lg mb-0">Topiconic_beautyspa</h4>
+          <h4 className="font-medium text-lg mb-0">architecture_pyatigorsk</h4>
         </div>
       </button>
     </div>
