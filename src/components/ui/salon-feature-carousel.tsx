@@ -12,11 +12,11 @@ import Autoplay from 'embla-carousel-autoplay';
 import { EmblaCarouselType } from 'embla-carousel';
 import Image from 'next/image';
 
-interface Service {
-  image?: string;
-  video?: string;
-  title: string;
-}
+// interface Service {
+//   image?: string;
+//   video?: string;
+//   title: string;
+// }
 
 function SalonFeatureCarousel() {
   const services = [

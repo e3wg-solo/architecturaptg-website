@@ -70,11 +70,6 @@ export function PromoCardSlider() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
-  // Проверяем, что массив карточек не пустой
-  if (promoCards.length === 0) {
-    return null;
-  }
-
   const handleCardClick = (card: PromoCard) => {
     const message = `Здравствуйте! Меня интересует акция "${card.title}" (${card.discount}) - ${card.description}. Подскажите, пожалуйста, подробности!`;
     const encodedMessage = encodeURIComponent(message);
@@ -82,6 +77,8 @@ export function PromoCardSlider() {
   };
 
   useEffect(() => {
+    if (promoCards.length === 0) return;
+    
     const interval = setInterval(() => {
       setDirection(1);
       setCurrentIndex((prevIndex) => {
@@ -92,6 +89,11 @@ export function PromoCardSlider() {
 
     return () => clearInterval(interval);
   }, []);
+
+  // Проверяем, что массив карточек не пустой
+  if (promoCards.length === 0) {
+    return null;
+  }
 
   const currentCard = promoCards[currentIndex];
 

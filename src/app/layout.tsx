@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import Script from 'next/script';
-import Image from 'next/image';
+// import Script from 'next/script';
+// import Image from 'next/image';
 import "./globals.css";
 
 import { Header } from "@/components/layout/header";
