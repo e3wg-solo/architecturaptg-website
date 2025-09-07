@@ -2,7 +2,7 @@
 
 export function ContactButtons() {
   const handleAddressClick = () => {
-    window.open('https://yandex.ru/maps/11067/pyatigorsk/?azimuth=0.01747889515220444&ll=43.066689%2C44.036271&mode=routes&rtext=~44.036309%2C43.068747&rtt=mt&ruri=~ymapsbm1%3A%2F%2Forg%3Foid%3D162391716025&tilt=0.006794443188677779&utm_source=share&z=17');
+    window.open('https://yandex.ru/maps/11067/pyatigorsk/?azimuth=0.01747889515220444&ll=43.041277%2C44.046528&mode=routes&rtext=~44.046547%2C43.041313&rtt=auto&ruri=~ymapsbm1%3A%2F%2Forg%3Foid%3D217587650654&tilt=0.006794443188677779&utm_source=share&z=16.76');
   };
 
   const handlePhoneClick = () => {
