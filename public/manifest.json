@@ -1,0 +1,21 @@
+{
+  "name": "Салон Архитектура",
+  "short_name": "Архитектура",
+  "description": "Студия эстетики лица и тела Архитектура в Пятигорске",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#c7a643",
+  "background_color": "#636363",
+  "display": "standalone",
+  "start_url": "/"
+}
