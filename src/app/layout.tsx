@@ -46,14 +46,14 @@ export const metadata: Metadata = {
   authors: [{ name: "Студия эстетики лица и тела Архитектура" }],
   creator: "Студия эстетики лица и тела Архитектура",
   publisher: "Студия эстетики лица и тела Архитектура",
-  metadataBase: new URL(process.env.NODE_ENV === 'production' ? 'https://architecturaptg.ru' : 'http://localhost:3000'),
+  metadataBase: new URL(process.env.NODE_ENV === 'production' ? 'https://architecturepyatigorsk.ru' : 'http://localhost:3000'),
   alternates: {
-    canonical: process.env.NODE_ENV === 'production' ? 'https://architecturaptg.ru' : 'http://localhost:3000',
+    canonical: process.env.NODE_ENV === 'production' ? 'https://architecturepyatigorsk.ru' : 'http://localhost:3000',
   },
   openGraph: {
     type: "website",
     locale: "ru_RU",
-    url: process.env.NODE_ENV === 'production' ? 'https://architecturaptg.ru' : 'http://localhost:3000',
+    url: process.env.NODE_ENV === 'production' ? 'https://architecturepyatigorsk.ru' : 'http://localhost:3000',
     title: "Студия эстетики лица и тела Архитектура - Косметология, массажи, SPA в Пятигорске",
     description: "Студия эстетики лица и тела Архитектура в Пятигорске: косметология, массажи лица и тела, SPA-программы, аппаратные процедуры, маникюр и педикюр. Профессиональные мастера, современное оборудование.",
     siteName: "Студия Архитектура",
@@ -103,7 +103,7 @@ export const metadata: Metadata = {
     "DC.date": "2024",
     "DC.type": "Service",
     "DC.format": "text/html",
-                "DC.identifier": "https://architecturaptg.ru",
+                "DC.identifier": "https://architecturepyatigorsk.ru",
     "DC.language": "ru",
     "DC.coverage": "Пятигорск, Ставропольский край",
     "DC.rights": "Студия эстетики лица и тела Архитектура",
@@ -139,7 +139,7 @@ export default function RootLayout({
               "@type": "BeautySalon",
               "name": "Салон эпиляции и массажа и маникюра Архитектура",
               "description": "Салон эпиляции и массажа и маникюра Архитектура в Пятигорске: профессиональная эпиляция, расслабляющий массаж, качественный маникюр",
-              "url": "https://architecturaptg.ru",
+              "url": "https://architecturepyatigorsk.ru",
               "telephone": "+79287167038",
               "address": {
                 "@type": "PostalAddress",
@@ -200,8 +200,8 @@ export default function RootLayout({
                 "reviewCount": "127"
               },
               "image": [
-                "https://architecturaptg.ru/studio-exterior.jpg",
-                "https://architecturaptg.ru/studio-interior.jpg"
+                "https://architecturepyatigorsk.ru/studio-exterior.jpg",
+                "https://architecturepyatigorsk.ru/studio-interior.jpg"
               ],
               "sameAs": [
                 "https://vk.com/arhitektura_beauty",
