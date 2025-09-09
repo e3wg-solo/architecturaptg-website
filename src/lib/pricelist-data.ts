@@ -611,6 +611,42 @@ export const pricelistData: PriceItem[] = [
   {
     categoryId: 'manicure-pedicure',
     categoryName: 'Маникюр и педикюр',
+    name: 'Маникюр гигиенический',
+    price: '1 400 ₽'
+  },
+  {
+    categoryId: 'manicure-pedicure',
+    categoryName: 'Маникюр и педикюр',
+    name: 'Маникюр коррекция гелем',
+    price: '2 000 ₽'
+  },
+  {
+    categoryId: 'manicure-pedicure',
+    categoryName: 'Маникюр и педикюр',
+    name: 'Наращивание ногтей (до 3-ки)',
+    price: '2 500 ₽'
+  },
+  {
+    categoryId: 'manicure-pedicure',
+    categoryName: 'Маникюр и педикюр',
+    name: 'Педикюр гигиенический',
+    price: '1 600 ₽'
+  },
+  {
+    categoryId: 'manicure-pedicure',
+    categoryName: 'Маникюр и педикюр',
+    name: 'Педикюр с покрытием',
+    price: '2 000 ₽'
+  },
+  {
+    categoryId: 'manicure-pedicure',
+    categoryName: 'Маникюр и педикюр',
+    name: 'Педикюр мужской',
+    price: '1 800 ₽'
+  },
+  {
+    categoryId: 'manicure-pedicure',
+    categoryName: 'Маникюр и педикюр',
     name: 'Снятие нашего покрытия / полировка ногтя',
     price: '100 ₽'
   },
@@ -689,50 +725,26 @@ export const pricelistData: PriceItem[] = [
   {
     categoryId: 'manicure-pedicure',
     categoryName: 'Маникюр и педикюр',
-    name: 'Маникюр гигиенический',
-    price: '1 400 ₽'
+    name: 'Френч ноги',
+    price: '300 ₽'
   },
   {
     categoryId: 'manicure-pedicure',
     categoryName: 'Маникюр и педикюр',
-    name: 'Маникюр коррекция гелем',
-    price: '2 000 ₽'
+    name: 'Френч руки',
+    price: '500 ₽'
   },
   {
     categoryId: 'manicure-pedicure',
     categoryName: 'Маникюр и педикюр',
-    name: 'Наращивание ногтей (до 3-ки)',
-    price: '2 500 ₽'
+    name: 'Плёнки 1 ноготь',
+    price: '150 ₽'
   },
   {
     categoryId: 'manicure-pedicure',
     categoryName: 'Маникюр и педикюр',
-    name: 'Педикюр гигиенический',
-    price: '1 600 ₽'
-  },
-  {
-    categoryId: 'manicure-pedicure',
-    categoryName: 'Маникюр и педикюр',
-    name: 'Педикюр с покрытием',
-    price: '2 000 ₽'
-  },
-  {
-    categoryId: 'manicure-pedicure',
-    categoryName: 'Маникюр и педикюр',
-    name: 'Педикюр мужской',
-    price: '1 800 ₽'
-  },
-  {
-    categoryId: 'manicure-pedicure',
-    categoryName: 'Маникюр и педикюр',
-    name: 'Френч (ноги — 300 ₽ / руки — 500 ₽)',
-    price: '—'
-  },
-  {
-    categoryId: 'manicure-pedicure',
-    categoryName: 'Маникюр и педикюр',
-    name: 'Плёнки (1 ноготь — 150 ₽ / все — 100 ₽)',
-    price: '—'
+    name: 'Плёнки все',
+    price: '100 ₽'
   },
   {
     categoryId: 'manicure-pedicure',

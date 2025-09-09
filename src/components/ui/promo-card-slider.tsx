@@ -1,9 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface PromoCard {
@@ -63,12 +65,30 @@ const promoCards: PromoCard[] = [
     discount: "60000₽",
     validUntil: "до конца 2025",
     color: "primary"
+  },
+  {
+    id: 7,
+    title: "Первая процедура маникюра",
+    description: "Скидка 5% на любой маникюр и педикюр для новых клиентов",
+    discount: "-5%",
+    validUntil: "для новых клиентов",
+    color: "accent"
+  },
+  {
+    id: 8,
+    title: "Комплекс маникюр + педикюр",
+    description: "Маникюр с покрытием + педикюр с покрытием",
+    discount: "-10%",
+    validUntil: "экономия 400₽",
+    color: "secondary"
   }
 ];
 
 export function PromoCardSlider() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleCardClick = (card: PromoCard) => {
     const message = `Здравствуйте! Меня интересует акция "${card.title}" (${card.discount}) - ${card.description}. Подскажите, пожалуйста, подробности!`;
@@ -76,19 +96,71 @@ export function PromoCardSlider() {
     window.open(`https://wa.me/79287167038?text=${encodedMessage}`, '_blank');
   };
 
+  const startAutoPlay = () => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
+      if (isAutoPlaying) {
+        setDirection(1);
+        setCurrentIndex((prevIndex) => {
+          const nextIndex = (prevIndex + 1) % promoCards.length;
+          return nextIndex >= 0 && nextIndex < promoCards.length ? nextIndex : 0;
+        });
+      }
+    }, 6000);
+  };
+
+  const stopAutoPlay = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  };
+
+  const goToNext = () => {
+    setDirection(1);
+    setCurrentIndex((prevIndex) => {
+      const nextIndex = (prevIndex + 1) % promoCards.length;
+      return nextIndex >= 0 && nextIndex < promoCards.length ? nextIndex : 0;
+    });
+    setIsAutoPlaying(false);
+    stopAutoPlay();
+    setTimeout(() => {
+      setIsAutoPlaying(true);
+      startAutoPlay();
+    }, 10000); // Возобновить автопрокрутку через 10 секунд
+  };
+
+  const goToPrev = () => {
+    setDirection(-1);
+    setCurrentIndex((prevIndex) => {
+      const prevIdx = prevIndex - 1;
+      return prevIdx < 0 ? promoCards.length - 1 : prevIdx;
+    });
+    setIsAutoPlaying(false);
+    stopAutoPlay();
+    setTimeout(() => {
+      setIsAutoPlaying(true);
+      startAutoPlay();
+    }, 10000); // Возобновить автопрокрутку через 10 секунд
+  };
+
+  const goToSlide = (index: number) => {
+    if (index === currentIndex) return;
+    setDirection(index > currentIndex ? 1 : -1);
+    setCurrentIndex(index);
+    setIsAutoPlaying(false);
+    stopAutoPlay();
+    setTimeout(() => {
+      setIsAutoPlaying(true);
+      startAutoPlay();
+    }, 10000);
+  };
+
   useEffect(() => {
     if (promoCards.length === 0) return;
-    
-    const interval = setInterval(() => {
-      setDirection(1);
-      setCurrentIndex((prevIndex) => {
-        const nextIndex = (prevIndex + 1) % promoCards.length;
-        return nextIndex >= 0 && nextIndex < promoCards.length ? nextIndex : 0;
-      });
-    }, 6000);
-
-    return () => clearInterval(interval);
-  }, []);
+    startAutoPlay();
+    return () => stopAutoPlay();
+  }, [isAutoPlaying]);
 
   // Проверяем, что массив карточек не пустой
   if (promoCards.length === 0) {
@@ -190,10 +262,66 @@ export function PromoCardSlider() {
     },
   };
 
+  // Touch/swipe handlers
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    
+    if (isLeftSwipe) {
+      goToNext();
+    } else if (isRightSwipe) {
+      goToPrev();
+    }
+  };
+
   return (
     <div className="relative w-full max-w-sm mx-auto">
+      {/* Navigation buttons */}
+      <div className="absolute left-0 top-1/2 -translate-y-1/2 z-10 -translate-x-4">
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={goToPrev}
+          className="h-8 w-8 rounded-full bg-white/90 hover:bg-white border-white/20 hover:border-white/40 shadow-lg"
+        >
+          <ChevronLeft className="h-4 w-4" />
+        </Button>
+      </div>
+      
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 z-10 translate-x-4">
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={goToNext}
+          className="h-8 w-8 rounded-full bg-white/90 hover:bg-white border-white/20 hover:border-white/40 shadow-lg"
+        >
+          <ChevronRight className="h-4 w-4" />
+        </Button>
+      </div>
+
       {/* Контейнер с фиксированной высотой для предотвращения "прыжков" */}
-      <div className="h-[200px] relative">
+      <div 
+        className="h-[200px] relative"
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+      >
         <AnimatePresence initial={false} custom={direction} mode="wait">
           <motion.div
             key={currentIndex}
@@ -271,18 +399,19 @@ export function PromoCardSlider() {
                   </motion.p>
                   <div className="flex space-x-1">
                     {promoCards.map((_, index) => (
-                      <motion.div
+                      <motion.button
                         key={index}
+                        onClick={() => goToSlide(index)}
                         variants={dotVariants}
                         initial="enter"
                         animate={index === currentIndex ? "center" : "center"}
                         exit="exit"
                         transition={{ duration: 0.3, delay: index * 0.05 }}
                         className={cn(
-                          "w-2 h-2 rounded-full",
+                          "w-2 h-2 rounded-full transition-all duration-200 hover:scale-110",
                           index === currentIndex 
                             ? "bg-white scale-125 shadow-lg shadow-white/50" 
-                            : "bg-white/30 scale-100"
+                            : "bg-white/30 scale-100 hover:bg-white/50"
                         )}
                       />
                     ))}

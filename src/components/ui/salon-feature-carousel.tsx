@@ -43,6 +43,18 @@ function SalonFeatureCarousel() {
     {
       video: "https://vkvideo.ru/video_ext.php?oid=-75903376&id=456239017&hd=2&autoplay=1",
       title: "Процесс работы мастера"
+    },
+    {
+      video: "https://vkvideo.ru/video_ext.php?oid=-75903376&id=456239019&hd=2&autoplay=1",
+      title: "Мастер-класс по коррекции фигуры"
+    },
+    {
+      video: "https://vkvideo.ru/video_ext.php?oid=-75903376&id=456239020&hd=2&autoplay=1",
+      title: "Процедуры красоты"
+    },
+    {
+      video: "https://vkvideo.ru/video_ext.php?oid=-75903376&id=456239021&hd=2&autoplay=1",
+      title: "Косметологические процедуры"
     }
   ];
 
