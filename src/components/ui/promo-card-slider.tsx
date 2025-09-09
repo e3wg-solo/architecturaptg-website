@@ -88,6 +88,8 @@ export function PromoCardSlider() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleCardClick = (card: PromoCard) => {
@@ -160,6 +162,7 @@ export function PromoCardSlider() {
     if (promoCards.length === 0) return;
     startAutoPlay();
     return () => stopAutoPlay();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAutoPlaying]);
 
   // Проверяем, что массив карточек не пустой
@@ -263,9 +266,6 @@ export function PromoCardSlider() {
   };
 
   // Touch/swipe handlers
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
-
   const minSwipeDistance = 50;
 
   const onTouchStart = (e: React.TouchEvent) => {
