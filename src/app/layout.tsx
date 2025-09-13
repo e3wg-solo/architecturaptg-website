@@ -124,6 +124,10 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="format-detection" content="telephone=yes" />
         
+        {/* Favicon */}
+        <link rel="icon" href="https://architecturepyatigorsk.ru/favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="https://architecturepyatigorsk.ru/favicon.ico" type="image/x-icon" />
+        
         {/* Local SF Pro Display Font Preloads */}
         <link rel="preload" href="/fonts/SF-Pro-Display-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/SF-Pro-Display-Medium.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
