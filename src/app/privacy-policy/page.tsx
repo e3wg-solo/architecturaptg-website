@@ -120,7 +120,7 @@ export default function PrivacyPolicyPage() {
                     </p>
                     <ul className="list-none space-y-2">
                       <li><strong>Адрес:</strong> г. Пятигорск, ул. Розы Люксембург, 72А</li>
-                      <li><strong>Телефон:</strong> +7 (928) 716-70-38</li>
+                      <li><strong>Телефон:</strong> +7 (934) 039-59-09</li>
                     </ul>
                   </section>
                 </div>

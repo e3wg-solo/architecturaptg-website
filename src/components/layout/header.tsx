@@ -92,7 +92,7 @@ export function Header() {
             <Button 
               size="sm"
               className="text-xs px-3 py-1.5 h-auto"
-              onClick={() => window.open('https://wa.me/79287167038', '_blank')}
+              onClick={() => window.open('https://wa.me/79340395909', '_blank')}
             >
               Записаться
             </Button>
@@ -137,7 +137,7 @@ export function Header() {
             {/* Записаться Button - Desktop */}
             <Button 
               className="hidden md:inline-flex text-sm px-4 py-2"
-              onClick={() => window.open('https://wa.me/79287167038', '_blank')}
+              onClick={() => window.open('https://wa.me/79340395909', '_blank')}
             >
               Записаться
             </Button>

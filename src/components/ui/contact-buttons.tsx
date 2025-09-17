@@ -6,11 +6,11 @@ export function ContactButtons() {
   };
 
   const handlePhoneClick = () => {
-    window.open('tel:+79287167038', '_self');
+    window.open('tel:+79340395909', '_self');
   };
 
   const handleWhatsAppClick = () => {
-    window.open('https://wa.me/79287167038', '_blank');
+    window.open('https://wa.me/79340395909', '_blank');
   };
 
 
@@ -46,7 +46,7 @@ export function ContactButtons() {
         <div className="flex-1">
           <h4 className="font-medium text-lg mb-0">Телефон</h4>
           <p className="text-muted-foreground">
-            +7 (928) 716-70-38
+            +7 (934) 039-59-09
           </p>
         </div>
       </button>
@@ -63,7 +63,7 @@ export function ContactButtons() {
         <div className="flex-1">
           <h4 className="font-medium text-lg mb-0">WhatsApp</h4>
           <p className="text-muted-foreground">
-            +7 (928) 716-70-38
+            +7 (934) 039-59-09
           </p>
         </div>
       </button>

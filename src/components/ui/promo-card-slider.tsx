@@ -95,7 +95,7 @@ export function PromoCardSlider() {
   const handleCardClick = (card: PromoCard) => {
     const message = `Здравствуйте! Меня интересует акция "${card.title}" (${card.discount}) - ${card.description}. Подскажите, пожалуйста, подробности!`;
     const encodedMessage = encodeURIComponent(message);
-    window.open(`https://wa.me/79287167038?text=${encodedMessage}`, '_blank');
+    window.open(`https://wa.me/79340395909?text=${encodedMessage}`, '_blank');
   };
 
   const startAutoPlay = () => {

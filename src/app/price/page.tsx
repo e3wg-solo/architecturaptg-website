@@ -65,11 +65,11 @@ function PricePageContent() {
   }, [serviceId]);
 
   const handleBooking = () => {
-    window.open('tel:+79287167038', '_self');
+    window.open('tel:+79340395909', '_self');
   };
 
   const handleWhatsApp = () => {
-    window.open('https://wa.me/79287167038', '_blank');
+    window.open('https://wa.me/79340395909', '_blank');
   };
 
   const handleAccordionChange = (value: string) => {

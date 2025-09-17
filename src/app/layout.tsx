@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     default: "Студия эстетики лица и тела Архитектура - Косметология, массажи, SPA в Пятигорске",
     template: "%s | Студия Архитектура"
   },
-  description: "Студия эстетики лица и тела Архитектура в Пятигорске: косметология, массажи лица и тела, SPA-программы, аппаратные процедуры, маникюр и педикюр. Профессиональные мастера, современное оборудование. Запись: +7 (928) 716-70-38",
+  description: "Студия эстетики лица и тела Архитектура в Пятигорске: косметология, массажи лица и тела, SPA-программы, аппаратные процедуры, маникюр и педикюр. Профессиональные мастера, современное оборудование. Запись: +7 (934) 039-59-09",
   keywords: [
     "косметология",
     "массаж лица",
@@ -141,10 +141,10 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "BeautySalon",
-              "name": "Салон эпиляции и массажа и маникюра Архитектура",
-              "description": "Салон эпиляции и массажа и маникюра Архитектура в Пятигорске: профессиональная эпиляция, расслабляющий массаж, качественный маникюр",
+              "name": "Студия эстетики лица и тела Архитектура",
+              "description": "Студия эстетики лица и тела Архитектура в Пятигорске: косметология, массажи лица и тела, SPA-программы, аппаратные процедуры, маникюр и педикюр, коррекция фигуры",
               "url": "https://architecturepyatigorsk.ru",
-              "telephone": "+79287167038",
+              "telephone": "+79340395909",
               "address": {
                 "@type": "PostalAddress",
                 "streetAddress": "ул. Розы Люксембург, 72А",
@@ -166,20 +166,34 @@ export default function RootLayout({
               "paymentAccepted": "Cash, Credit Card",
               "hasOfferCatalog": {
                 "@type": "OfferCatalog",
-                "name": "Услуги салона Архитектура",
+                "name": "Услуги студии Архитектура",
                 "itemListElement": [
                   {
                     "@type": "Offer",
                     "itemOffered": {
                       "@type": "Service",
-                      "name": "Эпиляция"
+                      "name": "Косметология"
                     }
                   },
                   {
                     "@type": "Offer", 
                     "itemOffered": {
                       "@type": "Service",
-                      "name": "Массаж"
+                      "name": "Массаж лица"
+                    }
+                  },
+                  {
+                    "@type": "Offer", 
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Массаж тела"
+                    }
+                  },
+                  {
+                    "@type": "Offer", 
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Массаж для мужчин"
                     }
                   },
                   {
@@ -194,6 +208,34 @@ export default function RootLayout({
                     "itemOffered": {
                       "@type": "Service",
                       "name": "Педикюр"
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Аппаратные процедуры для лица"
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Аппаратные процедуры для тела"
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "SPA-программы"
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Коррекция фигуры"
                     }
                   }
                 ]

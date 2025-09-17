@@ -38,10 +38,10 @@ export function Footer() {
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-brand-primary" />
                 <Link 
-                  href="tel:+79287167038" 
+                  href="tel:+79340395909" 
                   className="text-muted-foreground hover:text-brand-primary transition-colors"
                 >
-                  +7 (928) 716-70-38
+                  +7 (934) 039-59-09
                 </Link>
               </div>
 
