@@ -456,6 +456,13 @@ export const pricelistData: PriceItem[] = [
     name: 'Альгинатная маска',
     price: '500 ₽'
   },
+  {
+    categoryId: 'men-massage',
+    categoryName: 'Массажи для мужчин',
+    name: 'Спортивный массаж',
+    price: '4 500 ₽',
+    duration: '60 мин'
+  },
 
   // Массажи лица
   {

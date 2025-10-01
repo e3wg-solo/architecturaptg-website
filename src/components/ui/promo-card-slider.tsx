@@ -52,10 +52,10 @@ const promoCards: PromoCard[] = [
   },
   {
     id: 5,
-    title: "Курс коррекции фигуры",
-    description: "8 сеансов массажа для коррекции фигуры",
-    discount: "18000₽",
-    validUntil: "вместо 26000₽",
+    title: "Спортивный массаж (3 сеанса)",
+    description: "Курс спортивного массажа для восстановления",
+    discount: "11000₽",
+    validUntil: "вместо 13500₽",
     color: "primary"
   },
   {
@@ -81,6 +81,22 @@ const promoCards: PromoCard[] = [
     discount: "-10%",
     validUntil: "экономия 400₽",
     color: "secondary"
+  },
+  {
+    id: 9,
+    title: "Классический массаж спины (3 сеанса)",
+    description: "Курс классического массажа спины",
+    discount: "5500₽",
+    validUntil: "вместо 7500₽",
+    color: "primary"
+  },
+  {
+    id: 10,
+    title: "Парный массаж (1 сеанс)",
+    description: "Парный массаж для двоих",
+    discount: "5000₽",
+    validUntil: "вместо 6500₽",
+    color: "accent"
   }
 ];
 
